@@ -1,10 +1,10 @@
-
+import java.util.*;
 public class Verwaltung {
-
     DatabaseConnector connector;
+    Random r = new Random();
 
     public Verwaltung(){
-       connector = new DatabaseConnector("", 0, "Schuldaten.db", "", "");
+        connector = new DatabaseConnector("", 0, "Schuldaten.db", "", "");
     }
 
     public void aktuelleFehlermeldung(){
@@ -12,8 +12,7 @@ public class Verwaltung {
     }
 
     public void sqlBefehlAusfuehren(String sqlBefehl){
-        connector.executeStatement(sqlBefehl);  //Die Methode executeStatement der Klasse DatabaseConnector wird ausgeführt. Der sql-Befehl wird als String übergeben.
-
+        connector.executeStatement(sqlBefehl);
         for (int i=0; i<connector.getCurrentQueryResult().getRowCount(); i=i+1) {               //verschachtelte for-Schleifen, die das 'QueryResult' auslesen.
 
             for (int j=0; j<connector.getCurrentQueryResult().getColumnCount(); j=j+1) {
@@ -35,19 +34,19 @@ public class Verwaltung {
     public void alleSchuelerNichtAusHanauAusgeben(){
 
     }
-    
+
     public void alleLehrerDieEnglischOderMatheUnterrichtenAusgeben(){
-        
+
     }
-    
-     public void alleLKsAusgeben(){
-        
+
+    public void alleLKsAusgeben(){
+
     }
-    
+
     public void klassenListeAusgeben(String pK){        //Als Parameter pK könnte zum Beispiel "9b" übergeben werden. Dann soll die Klassenliste dder 9b ausgegeben werden. 
-        
+
     }
-    
+
     public void schuelerEinfuegenTest()      //Nur, um zu sehen, wie es geht...
     {
         String auftrag="INSERT INTO 'Schueler' ('SID', 'Vorname', 'Name', 'Geburtsdatum', 'Geschlecht','Wohnort','PLZ','Strasse','Hausnummer','Bezeichnung') VALUES (NULL, 'Felix', 'Finster', '2000-02-14','m','Bonn', 53177,'Siebenmorgenweg',34,'Q1')";
@@ -62,8 +61,7 @@ public class Verwaltung {
         aktuelleFehlermeldung();
     }
 
-    public void lehrerEinfuegen()   //Parameter übergeben
-    {
+    public void lehrerEinfuegen(){
 
     }
 
@@ -90,7 +88,5 @@ public class Verwaltung {
     public void schuelerVor2000GeborenAusgeben(){        //schwer...
 
     }
-
-    //und noch viele eigene Methoden schreiben ...
 }
 
