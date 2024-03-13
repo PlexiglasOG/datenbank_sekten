@@ -61,7 +61,13 @@ public class Verwaltung {
         connector.executeStatement(auftrag);
         aktuelleFehlermeldung();
     }
-
+    
+    public void mitgliedEinzufuegen(int pMIID, int pSEHAID, String pVorname, String pName, String pGeburtsdatum, String pBekehrungsdatum, String pSterbedatum){
+        String auftrag="INSERT INTO 'Mitglied' ('MIID', 'SEHAID', 'Vorname', 'Name', 'Geburtsdatum','Bekehrungsdatum','Sterbedatum') VALUES ('"+pMIID+"', '"+pSEHAID+"', '"+pVorname+"', '"+pName+"', '"+pGeburtsdatum+"','"+pBekehrungsdatum+"','"+pSterbedatum+"')";
+        connector.executeStatement(auftrag);
+        aktuelleFehlermeldung();
+    }
+    
     public void lehrerEinfuegen(){
 
     }
