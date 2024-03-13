@@ -61,7 +61,14 @@ public class Verwaltung {
         connector.executeStatement(auftrag);
         aktuelleFehlermeldung();
     }
-
+    
+    public void sekteEinfuegen(String pN, String pG, String pAD, String pGS, int pEJ, String pZS,int pMA )     //Alle Parameter übergeben
+    {
+        String auftrag="INSERT INTO 'Sekte' ('SEID', 'Name', 'Gründer', 'Apokalypsedatum', 'Glaubenssatz','Entstehungsjahr','Zusatzinformation','MitgliederanzahlDE') VALUES (NULL, '"+pN+"', '"+pG+"', '"+pAD+"','"+pGS+"','"+pEJ+"','"+pZS+"', "+pMA+",)";
+        connector.executeStatement(auftrag);
+        aktuelleFehlermeldung();
+    }
+    
     public void lehrerEinfuegen(){
 
     }
