@@ -24,21 +24,23 @@ public class Verwaltung {
         }
     }
 
+    
+    // Ausgabe-Methoden:
     public void alleSchuelerinnenAusgeben(){       
         String auftrag="select * from Schueler where Geschlecht='w'";
         sqlBefehlAusfuehren(auftrag);
     }
-    
+
     public void alleSektenAusgeben(){       
         String auftrag="select * from Sekte";
         sqlBefehlAusfuehren(auftrag);
     }
-    
-    public void alleMitlgliederAusgeben(){       
+
+    public void alleMitgliederAusgeben(){       
         String auftrag="select * from Mitlgied";
         sqlBefehlAusfuehren(auftrag);
     }
-
+    
     public void alleSchuelerAusgeben(){     
     }
 
@@ -58,34 +60,19 @@ public class Verwaltung {
 
     }
 
-    public void schuelerEinfuegenTest()      //Nur, um zu sehen, wie es geht...
-    {
-        String auftrag="INSERT INTO 'Schueler' ('SID', 'Vorname', 'Name', 'Geburtsdatum', 'Geschlecht','Wohnort','PLZ','Strasse','Hausnummer','Bezeichnung') VALUES (NULL, 'Felix', 'Finster', '2000-02-14','m','Bonn', 53177,'Siebenmorgenweg',34,'Q1')";
-        connector.executeStatement(auftrag);
-        aktuelleFehlermeldung();
-    }
-
-    public void schuelerEinfuegen(String pV, String pN, String pGD, String pG, String pW, int pLZ, String pS,int pH, String pK )     //Alle Parameter übergeben
-    {
-        String auftrag="INSERT INTO 'Schueler' ('SID', 'Vorname', 'Name', 'Geburtsdatum', 'Geschlecht','Wohnort','PLZ','Strasse','Hausnummer','Bezeichnung') VALUES (NULL, '"+pV+"', '"+pN+"', '"+pGD+"','"+pG+"','"+pW+"', "+pLZ+",'"+pS+"',"+pH+",'"+pK+"')";
-        connector.executeStatement(auftrag);
-        aktuelleFehlermeldung();
-    }
-    
-
     public void mitgliedEinzufuegen(int pSEHAID, String pVorname, String pName, String pGeburtsdatum, String pBekehrungsdatum, String pSterbedatum){
         String auftrag="INSERT INTO 'Mitglied' ('MIID', 'SEHAID', 'Vorname', 'Name', 'Geburtsdatum','Bekehrungsdatum','Sterbedatum') VALUES (NULL, '"+pSEHAID+"', '"+pVorname+"', '"+pName+"', '"+pGeburtsdatum+"','"+pBekehrungsdatum+"','"+pSterbedatum+"')";
         connector.executeStatement(auftrag);
         aktuelleFehlermeldung();
     }
-    
+
     public void sekteEinfuegen(String pN, String pG, String pAD, String pGS, int pEJ, String pZS,int pMA )     //Alle Parameter übergeben
     {
         String auftrag="INSERT INTO 'Sekte' ('SEID', 'Name', 'Gründer', 'Apokalypsedatum', 'Glaubenssatz','Entstehungsjahr','Zusatzinformationen','MitgliederanzahlDE') VALUES (NULL, '"+pN+"', '"+pG+"', '"+pAD+"','"+pGS+"','"+pEJ+"','"+pZS+"', "+pMA+")";
         connector.executeStatement(auftrag);
         aktuelleFehlermeldung();
     }
-    
+
     public void lehrerEinfuegen(){
 
     }
