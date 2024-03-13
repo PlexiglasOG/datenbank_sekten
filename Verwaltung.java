@@ -29,8 +29,13 @@ public class Verwaltung {
         sqlBefehlAusfuehren(auftrag);
     }
     
-    public void alleSekteAusgeben(){       
+    public void alleSektenAusgeben(){       
         String auftrag="select * from Sekte";
+        sqlBefehlAusfuehren(auftrag);
+    }
+    
+    public void alleMitlgliederAusgeben(){       
+        String auftrag="select * from Mitlgied";
         sqlBefehlAusfuehren(auftrag);
     }
 
@@ -67,6 +72,7 @@ public class Verwaltung {
         aktuelleFehlermeldung();
     }
     
+
     public void mitgliedEinzufuegen(int pSEHAID, String pVorname, String pName, String pGeburtsdatum, String pBekehrungsdatum, String pSterbedatum){
         String auftrag="INSERT INTO 'Mitglied' ('MIID', 'SEHAID', 'Vorname', 'Name', 'Geburtsdatum','Bekehrungsdatum','Sterbedatum') VALUES (NULL, '"+pSEHAID+"', '"+pVorname+"', '"+pName+"', '"+pGeburtsdatum+"','"+pBekehrungsdatum+"','"+pSterbedatum+"')";
         connector.executeStatement(auftrag);
