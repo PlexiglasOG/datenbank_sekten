@@ -346,21 +346,21 @@ public class GUIVorlage extends JFrame {
             String geburtstag = t7.getText();
             String geschlecht = t8.getText();
             String kurs=t9.getText();         
-            schule.schuelerEinfuegen(vorname, name, geburtstag, geschlecht, ort, plz, strasse, hnummer, kurs);
+        //    schule.schuelerEinfuegen(vorname, name, geburtstag, geschlecht, ort, plz, strasse, hnummer, kurs);
         }
         if(m==2){
             String name = t1.getText();
             String vorname = t2.getText();
             String fach1 = t3.getText();
             String fach2 = t4.getText();
-            schule.lehrerEinfuegen();
+          //  schule.lehrerEinfuegen();
         }
         if(m==3){
             String kursname = t1.getText();
             String fach = t2.getText();
             String art = t3.getText();
             String lehrer = t4.getText();
-            schule.kursAnlegen();
+          //  schule.kursAnlegen();
         }
     }
 

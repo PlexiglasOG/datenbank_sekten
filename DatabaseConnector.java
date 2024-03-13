@@ -89,7 +89,8 @@ public class DatabaseConnector{
     public String getErrorMessage(){
         return message;
     }
-
+    
+    // Schließt die Verbindung
     public void close(){
         try{
             connection.close();
