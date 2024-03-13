@@ -59,14 +59,7 @@ public class Verwaltung {
     public void klassenListeAusgeben(String pK){        //Als Parameter pK könnte zum Beispiel "9b" übergeben werden. Dann soll die Klassenliste dder 9b ausgegeben werden. 
 
     }
-    
-    public void schuelerEinfuegen(String pV, String pN, String pGD, String pG, String pW, int pLZ, String pS,int pH, String pK )     //Alle Parameter übergeben
-    {
-        String auftrag="INSERT INTO 'Schueler' ('SID', 'Vorname', 'Name', 'Geburtsdatum', 'Geschlecht','Wohnort','PLZ','Strasse','Hausnummer','Bezeichnung') VALUES (NULL, '"+pV+"', '"+pN+"', '"+pGD+"','"+pG+"','"+pW+"', "+pLZ+",'"+pS+"',"+pH+",'"+pK+"')";
-        connector.executeStatement(auftrag);
-        aktuelleFehlermeldung();
-    }
-    
+
     public void mitgliedEinzufuegen(int pSEHAID, String pVorname, String pName, String pGeburtsdatum, String pBekehrungsdatum, String pSterbedatum){
         String auftrag="INSERT INTO 'Mitglied' ('MIID', 'SEHAID', 'Vorname', 'Name', 'Geburtsdatum','Bekehrungsdatum','Sterbedatum') VALUES (NULL, '"+pSEHAID+"', '"+pVorname+"', '"+pName+"', '"+pGeburtsdatum+"','"+pBekehrungsdatum+"','"+pSterbedatum+"')";
         connector.executeStatement(auftrag);
