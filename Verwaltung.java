@@ -26,10 +26,6 @@ public class Verwaltung {
 
     
     // Ausgabe-Methoden:
-    public void alleSchuelerinnenAusgeben(){       
-        String auftrag="select * from Schueler where Geschlecht='w'";
-        sqlBefehlAusfuehren(auftrag);
-    }
 
     public void alleSektenAusgeben(){       
         String auftrag="select * from Sekte";
@@ -41,24 +37,6 @@ public class Verwaltung {
         sqlBefehlAusfuehren(auftrag);
     }
     
-    public void alleSchuelerAusgeben(){     
-    }
-
-    public void alleSchuelerNichtAusHanauAusgeben(){
-
-    }
-
-    public void alleLehrerDieEnglischOderMatheUnterrichtenAusgeben(){
-
-    }
-
-    public void alleLKsAusgeben(){
-
-    }
-
-    public void klassenListeAusgeben(String pK){        //Als Parameter pK könnte zum Beispiel "9b" übergeben werden. Dann soll die Klassenliste dder 9b ausgegeben werden. 
-
-    }
 
     public void mitgliedEinzufuegen(int pSEHAID, String pVorname, String pName, String pGeburtsdatum, String pBekehrungsdatum, String pSterbedatum){
         String auftrag="INSERT INTO 'Mitglied' ('MIID', 'SEHAID', 'Vorname', 'Name', 'Geburtsdatum','Bekehrungsdatum','Sterbedatum') VALUES (NULL, '"+pSEHAID+"', '"+pVorname+"', '"+pName+"', '"+pGeburtsdatum+"','"+pBekehrungsdatum+"','"+pSterbedatum+"')";
@@ -68,37 +46,24 @@ public class Verwaltung {
 
     public void sekteEinfuegen(String pN, String pG, String pAD, String pGS, int pEJ, String pZS,int pMA )     //Alle Parameter übergeben
     {
-        String auftrag="INSERT INTO 'Sekte' ('SEID', 'Name', 'Gründer', 'Apokalypsedatum', 'Glaubenssatz','Entstehungsjahr','Zusatzinformationen','MitgliederanzahlDE') VALUES (NULL, '"+pN+"', '"+pG+"', '"+pAD+"','"+pGS+"','"+pEJ+"','"+pZS+"', "+pMA+")";
+        String auftrag="INSERT INTO 'Sekte' ('SEID', 'Name', 'Gründer', 'Apokalypsedatum', 'Glaubenssatz','Entstehungsjahr','Zusatzinformationen','MitgliederanzahlDE') VALUES (NULL, '"+pN+"', '"+pG+"', '"+pAD+"','"+pGS+"','"+pEJ+"','"+pZS+"', '"+pMA+"')";
         connector.executeStatement(auftrag);
         aktuelleFehlermeldung();
     }
-
-    public void lehrerEinfuegen(){
-
-    }
-
-    public void kursAnlegen()   //Parameter übergeben
+    
+    public void predigerEinfuegen(String pMIID )     //Alle Parameter übergeben
     {
-
+        String auftrag="INSERT INTO 'Prediger' ('PEID', 'MIID') VALUES (NULL, '"+pMIID+"')";
+        connector.executeStatement(auftrag);
+        aktuelleFehlermeldung();
     }
-
-    public void kursZuweisen()  //Parameter übergeben (KID und SID)
+    
+    public void sektenhausEinfuegen(String pAdresse, String pName, String pPEID )     //Alle Parameter übergeben
     {
-
+        String auftrag="INSERT INTO 'Sektenhaus' ('SEHAID', 'Adresse','Name','PEID') VALUES (NULL,'"+pAdresse+"','"+pName+"','"+pPEID+"')";
+        connector.executeStatement(auftrag);
+        aktuelleFehlermeldung();
     }
-
-    public void KurslisteAusgeben() //Parameter KID übergeben
-    {
-
-    }
-
-    public void KursgroeßeAusgeben() //Parameter KID übergeben
-    {
-
-    }
-
-    public void schuelerVor2000GeborenAusgeben(){        //schwer...
-
-    }
+    
 }
 
