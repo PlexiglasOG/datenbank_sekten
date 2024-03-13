@@ -28,6 +28,11 @@ public class Verwaltung {
         String auftrag="select * from Schueler where Geschlecht='w'";
         sqlBefehlAusfuehren(auftrag);
     }
+    
+    public void alleSekteAusgeben(){       
+        String auftrag="select * from Sekte";
+        sqlBefehlAusfuehren(auftrag);
+    }
 
     public void alleSchuelerAusgeben(){     
     }
@@ -62,8 +67,16 @@ public class Verwaltung {
         aktuelleFehlermeldung();
     }
     
+
     public void mitgliedEinzufuegen(int pMIID, int pSEHAID, String pVorname, String pName, String pGeburtsdatum, String pBekehrungsdatum, String pSterbedatum){
         String auftrag="INSERT INTO 'Mitglied' ('MIID', 'SEHAID', 'Vorname', 'Name', 'Geburtsdatum','Bekehrungsdatum','Sterbedatum') VALUES ('"+pMIID+"', '"+pSEHAID+"', '"+pVorname+"', '"+pName+"', '"+pGeburtsdatum+"','"+pBekehrungsdatum+"','"+pSterbedatum+"')";
+        connector.executeStatement(auftrag);
+        aktuelleFehlermeldung();
+    }
+    
+    public void sekteEinfuegen(String pN, String pG, String pAD, String pGS, int pEJ, String pZS,int pMA )     //Alle Parameter übergeben
+    {
+        String auftrag="INSERT INTO 'Sekte' ('SEID', 'Name', 'Gründer', 'Apokalypsedatum', 'Glaubenssatz','Entstehungsjahr','Zusatzinformationen','MitgliederanzahlDE') VALUES (NULL, '"+pN+"', '"+pG+"', '"+pAD+"','"+pGS+"','"+pEJ+"','"+pZS+"', "+pMA+")";
         connector.executeStatement(auftrag);
         aktuelleFehlermeldung();
     }
