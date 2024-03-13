@@ -4,7 +4,7 @@ public class Verwaltung {
     Random r = new Random();
 
     public Verwaltung(){
-        connector = new DatabaseConnector("", 0, "Schuldaten.db", "", "");
+        connector = new DatabaseConnector("", 0, "Datenbank.db", "", "");
     }
 
     public void aktuelleFehlermeldung(){
