@@ -1,6 +1,6 @@
 import java.util.*;
 public class Verwaltung {
-    DatabaseConnector connector;
+    DatabaseConnector connector ;
     Random r = new Random();
 
     public Verwaltung(){
@@ -23,14 +23,9 @@ public class Verwaltung {
             System.out.println();
         }
     }
-
+   
     
     // Ausgabe-Methoden:
-    public void alleSchuelerinnenAusgeben(){       
-        String auftrag="select * from Schueler where Geschlecht='w'";
-        sqlBefehlAusfuehren(auftrag);
-    }
-
     public void alleSektenAusgeben(){       
         String auftrag="select * from Sekte";
         sqlBefehlAusfuehren(auftrag);
@@ -41,25 +36,8 @@ public class Verwaltung {
         sqlBefehlAusfuehren(auftrag);
     }
     
-    public void alleSchuelerAusgeben(){     
-    }
-
-    public void alleSchuelerNichtAusHanauAusgeben(){
-
-    }
-
-    public void alleLehrerDieEnglischOderMatheUnterrichtenAusgeben(){
-
-    }
-
-    public void alleLKsAusgeben(){
-
-    }
-
-    public void klassenListeAusgeben(String pK){        //Als Parameter pK könnte zum Beispiel "9b" übergeben werden. Dann soll die Klassenliste dder 9b ausgegeben werden. 
-
-    }
-
+    
+    // Einfüge-Methoden
     public void mitgliedEinzufuegen(int pSEHAID, String pVorname, String pName, String pGeburtsdatum, String pBekehrungsdatum, String pSterbedatum){
         String auftrag="INSERT INTO 'Mitglied' ('MIID', 'SEHAID', 'Vorname', 'Name', 'Geburtsdatum','Bekehrungsdatum','Sterbedatum') VALUES (NULL, '"+pSEHAID+"', '"+pVorname+"', '"+pName+"', '"+pGeburtsdatum+"','"+pBekehrungsdatum+"','"+pSterbedatum+"')";
         connector.executeStatement(auftrag);
@@ -72,33 +50,8 @@ public class Verwaltung {
         connector.executeStatement(auftrag);
         aktuelleFehlermeldung();
     }
-
-    public void lehrerEinfuegen(){
-
-    }
-
-    public void kursAnlegen()   //Parameter übergeben
-    {
-
-    }
-
-    public void kursZuweisen()  //Parameter übergeben (KID und SID)
-    {
-
-    }
-
-    public void KurslisteAusgeben() //Parameter KID übergeben
-    {
-
-    }
-
-    public void KursgroeßeAusgeben() //Parameter KID übergeben
-    {
-
-    }
-
-    public void schuelerVor2000GeborenAusgeben(){        //schwer...
-
-    }
+    
+    // Suche-Methoden
+    
 }
 
