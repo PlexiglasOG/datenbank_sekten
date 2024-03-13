@@ -14,10 +14,12 @@ public class GUIVorlage extends JFrame {
     private JButton b4 = new JButton();
     private JButton b5 = new JButton();
     private JButton b3 = new JButton();
+    
     private JButton mitglieder = new JButton();    //Mitglieder
     private JButton sekten = new JButton();    //Sekten
     private JButton prediger = new JButton();    //Prediger
-    private JButton bMenue4 = new JButton();    //belegen
+    private JButton sektenhaus = new JButton();    //Sektenhaus
+    
     private JLabel l3 = new JLabel();
     private JLabel l4 = new JLabel();
     private JLabel l5 = new JLabel();
