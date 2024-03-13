@@ -6,8 +6,8 @@ alles, was er/sie wissen muss. Üblicherweise sollte der Kommentar
 zumindest die folgenden Angaben umfassen:
 ------------------------------------------------------------------------
 
-PROJEKTBEZEICHNUNG:
-PROJEKTZWECK:
+PROJEKTBEZEICHNUNG: Datenbank Sekten 
+PROJEKTZWECK: Verwaltung von Sekten
 VERSION oder DATUM:
 WIE IST DAS PROJEKT ZU STARTEN:
 AUTOR(EN):
