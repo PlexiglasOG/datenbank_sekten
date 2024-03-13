@@ -1,22 +1,9 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.event.*;
-import javax.swing.border.Border;
-import javax.swing.border.LineBorder;
-import javax.swing.JTextArea;
-import javax.swing.JScrollPane;
-
-/**
- * Eine GUI fuer die Schulverwaltung
- *
- * @version 1.0 
- * @author bpunkta
- */
-
 public class GUIVorlage extends JFrame {
     // Anfang Attribute
-    private Verwaltung schule;
+    private Verwaltung verwaltung;
     private int m=1;
     private JLabel l1 = new JLabel();
     private JLabel l2 = new JLabel();
@@ -27,9 +14,9 @@ public class GUIVorlage extends JFrame {
     private JButton b4 = new JButton();
     private JButton b5 = new JButton();
     private JButton b3 = new JButton();
-    private JButton bMenue1 = new JButton();    //Schüler
-    private JButton bMenue2 = new JButton();    //Lehrer
-    private JButton bMenue3 = new JButton();    //Kurse
+    private JButton mitglieder = new JButton();    //Mitglieder
+    private JButton sekten = new JButton();    //Sekten
+    private JButton prediger = new JButton();    //Prediger
     private JButton bMenue4 = new JButton();    //belegen
     private JLabel l3 = new JLabel();
     private JLabel l4 = new JLabel();
@@ -49,10 +36,9 @@ public class GUIVorlage extends JFrame {
     private JTextArea textfeld;
     // Ende Attribute
 
-    public GUIVorlage() {
-
+    public GUIVorlage(){
         // Frame-Initialisierung
-        super("Schulverwaltung");
+        super("SektenVerwaltung");
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         int frameWidth = 600; 
         int frameHeight = 460;
@@ -65,7 +51,7 @@ public class GUIVorlage extends JFrame {
         cp.setLayout(null);
 
         //Verwaltung/Datenbank
-        schule=new Verwaltung();
+        verwaltung = new Verwaltung();
 
         // /* Erzeugung eines neuen Menü-Dialoges (EXPERIMENTELL) */
         // JDialog meinJDialog = new JDialog();
@@ -137,36 +123,36 @@ public class GUIVorlage extends JFrame {
         t2.setText("");
         t2.setFont(new Font("Arial", Font.PLAIN, 17));
         cp.add(t2);
-        bMenue1.setBounds(10, 380, 115, 33);
-        bMenue1.setText("Schüler");
-        bMenue1.setMargin(new Insets(2, 2, 2, 2));
-        bMenue1.addActionListener(new ActionListener() {
+        mitglieder.setBounds(10, 380, 115, 33);
+        mitglieder.setText("Schüler");
+        mitglieder.setMargin(new Insets(2, 2, 2, 2));
+        mitglieder.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
                     menue1_ActionPerformed(evt);
                 }
             });
-        bMenue1.setFont(new Font("Dialog", Font.PLAIN, 13));
-        cp.add(bMenue1);
-        bMenue2.setBounds(130, 380, 115, 33);
-        bMenue2.setText("Lehrer");
-        bMenue2.setMargin(new Insets(2, 2, 2, 2));
-        bMenue2.addActionListener(new ActionListener() {
+        mitglieder.setFont(new Font("Dialog", Font.PLAIN, 13));
+        cp.add(mitglieder);
+        sekten.setBounds(130, 380, 115, 33);
+        sekten.setText("Lehrer");
+        sekten.setMargin(new Insets(2, 2, 2, 2));
+        sekten.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
                     menue2_ActionPerformed(evt);
                 }
             });
-        bMenue2.setFont(new Font("Dialog", Font.PLAIN, 13));
-        cp.add(bMenue2);
-          bMenue3.setBounds(250, 380, 115, 33);
-        bMenue3.setText("Kurse");
-        bMenue3.setMargin(new Insets(2, 2, 2, 2));
-        bMenue3.addActionListener(new ActionListener() {
+        sekten.setFont(new Font("Dialog", Font.PLAIN, 13));
+        cp.add(sekten);
+          prediger.setBounds(250, 380, 115, 33);
+        prediger.setText("Kurse");
+        prediger.setMargin(new Insets(2, 2, 2, 2));
+        prediger.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
                     menue3_ActionPerformed(evt);
                 }
             });
-        bMenue3.setFont(new Font("Dialog", Font.PLAIN, 13));
-        cp.add(bMenue3);
+        prediger.setFont(new Font("Dialog", Font.PLAIN, 13));
+        cp.add(prediger);
         b1.setBounds(400, 10, 115, 33);
         b1.setText("Einfuegen");
         b1.setMargin(new Insets(2, 2, 2, 2));
@@ -296,7 +282,6 @@ public class GUIVorlage extends JFrame {
     }
 
     // Anfang Methoden
-
     public void  menue1_ActionPerformed(ActionEvent evt){
         m=1;
         l1.setText("Name:");
@@ -335,44 +320,16 @@ public class GUIVorlage extends JFrame {
         l8.setText("");
         l9.setText("");
     }
+    
     public void b1_ActionPerformed(ActionEvent evt) {
-        if(m==1){
-            String name = t1.getText();
-            String vorname = t2.getText();
-            String strasse = t3.getText();
-            int hnummer=Integer.parseInt(t4.getText());
-            int plz=Integer.parseInt(t5.getText());
-            String ort = t6.getText();
-            String geburtstag = t7.getText();
-            String geschlecht = t8.getText();
-            String kurs=t9.getText();         
-        //    schule.schuelerEinfuegen(vorname, name, geburtstag, geschlecht, ort, plz, strasse, hnummer, kurs);
-        }
-        if(m==2){
-            String name = t1.getText();
-            String vorname = t2.getText();
-            String fach1 = t3.getText();
-            String fach2 = t4.getText();
-          //  schule.lehrerEinfuegen();
-        }
-        if(m==3){
-            String kursname = t1.getText();
-            String fach = t2.getText();
-            String art = t3.getText();
-            String lehrer = t4.getText();
-          //  schule.kursAnlegen();
-        }
+       
     }
 
     public void b2_ActionPerformed(ActionEvent evt) {
-        String name = t1.getText();
-        //mitarbeiterKartei.mitarbeiterLoeschenName(name);
+        
     }
 
     public void b3_ActionPerformed(ActionEvent evt) {
-
-        String name = t1.getText();
-        //t2.setText(mitarbeiterKartei.sucheMitarbeiter(name)); 
 
     }
 
@@ -382,7 +339,6 @@ public class GUIVorlage extends JFrame {
 
     public void b4_ActionPerformed(ActionEvent evt) {
         dispose();
-
     }
 
     public void b5_ActionPerformed(ActionEvent evt) {
@@ -400,7 +356,4 @@ public class GUIVorlage extends JFrame {
         t9.setText("");
         t5.setText("");
     }
-
-    // Ende Methoden
-
 }

@@ -65,7 +65,6 @@ public class Verwaltung {
         aktuelleFehlermeldung();
     }
 
-    // Suche-Method
+    // Suche-Methoden
     
 }
-
