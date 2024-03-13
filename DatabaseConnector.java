@@ -80,11 +80,12 @@ public class DatabaseConnector{
     
     // Getter Methoden:
     
-    // Gibt die Fehlermeldung
+    // Gibt das Ergebnis eines Current
     public QueryResult getCurrentQueryResult(){
         return currentQueryResult;
     }
-
+    
+    // Gibt die Fehlermeldung
     public String getErrorMessage(){
         return message;
     }

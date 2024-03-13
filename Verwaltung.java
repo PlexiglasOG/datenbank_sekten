@@ -13,7 +13,8 @@ public class Verwaltung {
 
     public void sqlBefehlAusfuehren(String sqlBefehl){
         connector.executeStatement(sqlBefehl);
-        for (int i=0; i<connector.getCurrentQueryResult().getRowCount(); i=i+1) {               //verschachtelte for-Schleifen, die das 'QueryResult' auslesen.
+        // für die Darstellung des Ergebnisses in einer Tabbellenform
+        for (int i=0; i<connector.getCurrentQueryResult().getRowCount(); i=i+1) {          
 
             for (int j=0; j<connector.getCurrentQueryResult().getColumnCount(); j=j+1) {
                 System.out.print(connector.getCurrentQueryResult().getData()[i][j]+" ");
