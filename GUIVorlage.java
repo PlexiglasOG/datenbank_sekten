@@ -5,21 +5,23 @@ public class GUIVorlage extends JFrame {
     // Anfang Attribute
     private Verwaltung verwaltung;
     private int m=1;
-    private JLabel l1 = new JLabel();
-    private JLabel l2 = new JLabel();
-    private JTextField t1 = new JTextField();
-    private JTextField t2 = new JTextField();
-    private JButton b1 = new JButton();
-    private JButton b2 = new JButton();
-    private JButton b4 = new JButton();
-    private JButton b5 = new JButton();
-    private JButton b3 = new JButton();
     
+    // Buttons
+    // Operator-Buttons
+    private JButton einfuegenButton = new JButton(); // Einfüge-Button
+    private JButton loescheButtton = new JButton(); // Lösche-Button
+    private JButton sucheButton = new JButton(); // Suche-button
+    private JButton maskeLeerenButton = new JButton(); // Maske-Leeren
+    
+    // Menü-Buttons
     private JButton mitdliederMenueButton = new JButton();    //Mitdlieder Menü-Button
     private JButton sektenMenueButton = new JButton();    //Sekten Menü-Button
     private JButton predigerMenueButton = new JButton();    //Prediger Menü-Button
     private JButton sektenhausMenueButton = new JButton();    //Sektenhaus Menü-Button
     
+    // Labels
+    private JLabel l1 = new JLabel();
+    private JLabel l2 = new JLabel();
     private JLabel l3 = new JLabel();
     private JLabel l4 = new JLabel();
     private JLabel l5 = new JLabel();
@@ -27,6 +29,10 @@ public class GUIVorlage extends JFrame {
     private JLabel l7 = new JLabel();
     private JLabel l8 = new JLabel();
     private JLabel l9 = new JLabel();
+    
+    // Textfelder
+    private JTextField t1 = new JTextField();
+    private JTextField t2 = new JTextField();
     private JTextField t3 = new JTextField();
     private JTextField t5 = new JTextField();
     private JTextField t6 = new JTextField();
@@ -34,10 +40,9 @@ public class GUIVorlage extends JFrame {
     private JTextField t7 = new JTextField();
     private JTextField t8 = new JTextField();
     private JTextField t9 = new JTextField();
-    private JButton bMaskeLeeren = new JButton();
     private JTextArea textfeld;
+    
     // Ende Attribute
-
     public GUIVorlage(){
         // Frame-Initialisierung
         super("Sekten-Verwaltung");
@@ -107,25 +112,6 @@ public class GUIVorlage extends JFrame {
         cp.add(textfeld);
         textfeld.paste();
         
-        
-        
-        l1.setBounds(10, 10, 130, 23);
-        l1.setText("Name:");
-        l1.setFont(new Font("Arial", Font.PLAIN, 17));
-        cp.add(l1);
-        l2.setBounds(10, 50, 95, 23);
-        l2.setText("Vorname:");
-        l2.setFont(new Font("Arial", Font.PLAIN, 17));
-        cp.add(l2);
-        t1.setBounds(150, 10, 230, 30);
-        t1.setText("");
-        t1.setFont(new Font("Arial", Font.PLAIN, 17));
-        cp.add(t1);
-        t2.setBounds(150, 50, 230, 30);
-        t2.setText("");
-        t2.setFont(new Font("Arial", Font.PLAIN, 17));
-        cp.add(t2);
-        
         // Menü-Buttons
         // Mitglieder Menü-Button
         mitdliederMenueButton.setBounds(10, 380, 115, 33);
@@ -169,66 +155,77 @@ public class GUIVorlage extends JFrame {
         sektenhausMenueButton.setMargin(new Insets(2, 2, 2, 2));
         sektenhausMenueButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
-                    menue2_ActionPerformed(evt);
+                    menue4_ActionPerformed(evt);
                 }
             });
         sektenhausMenueButton.setFont(new Font("Dialog", Font.PLAIN, 13));
         cp.add(sektenhausMenueButton);
         
+        // Operator-Buttons
+        // Einfügen-Button
+        einfuegenButton.setBounds(400, 10, 115, 33);
+        einfuegenButton.setText("Einfügen");
+        einfuegenButton.setMargin(new Insets(2, 2, 2, 2));
+        einfuegenButton.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent evt) {
+                    einfuegenButton_ActionPerformed(evt);
+                }
+            });
+        einfuegenButton.setFont(new Font("Dialog", Font.PLAIN, 13));
+        cp.add(einfuegenButton);
         
-        b1.setBounds(400, 10, 115, 33);
-        b1.setText("Einfuegen");
-        b1.setMargin(new Insets(2, 2, 2, 2));
-        b1.addActionListener(new ActionListener() {
+        // Lösche-Button
+        loescheButtton.setBounds(400, 50, 115, 33);
+        loescheButtton.setText("Löschen");
+        loescheButtton.setMargin(new Insets(2, 2, 2, 2));
+        loescheButtton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
-                    b1_ActionPerformed(evt);
+                    loescheButtton_ActionPerformed(evt);
                 }
             });
-        b1.setFont(new Font("Dialog", Font.PLAIN, 13));
-        cp.add(b1);
-        b2.setBounds(400, 50, 115, 33);
-        b2.setText("Loeschen");
-        b2.setMargin(new Insets(2, 2, 2, 2));
-        b2.addActionListener(new ActionListener() {
+        loescheButtton.setFont(new Font("Dialog", Font.PLAIN, 13));
+        cp.add(loescheButtton);
+        
+        // Suche-Button
+        sucheButton.setBounds(400, 90, 115, 33);
+        sucheButton.setText("Suchen");
+        sucheButton.setMargin(new Insets(2, 2, 2, 2));
+        sucheButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
-                    b2_ActionPerformed(evt);
+                    sucheButton_ActionPerformed(evt);
                 }
             });
-        b2.setFont(new Font("Dialog", Font.PLAIN, 13));
-        cp.add(b2);
-        b3.setBounds(400, 90, 115, 33);
-        b3.setText("Button 3");
-        b3.setMargin(new Insets(2, 2, 2, 2));
-        b3.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent evt) {
-                    b3_ActionPerformed(evt);
+        sucheButton.setFont(new Font("Dialog", Font.PLAIN, 13));
+        cp.add(sucheButton);
+        
+        // MaskeLeeren-Button
+        maskeLeerenButton.setBounds(400, 130, 115, 33);
+        maskeLeerenButton.setText("Maske leeren");
+        maskeLeerenButton.setMargin(new Insets(2, 2, 2, 2));
+        maskeLeerenButton.addActionListener(new ActionListener() { 
+                public void actionPerformed(ActionEvent evt) { 
+                    maskeLeerenButton_ActionPerformed(evt);
                 }
             });
-        b3.setFont(new Font("Dialog", Font.PLAIN, 13));
-        cp.add(b3);
-
-        b4.setBounds(400, 130, 115, 33);
-        b4.setText("Button 4");
-        b4.setMargin(new Insets(2, 2, 2, 2));
-        b4.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent evt) {
-                    b4_ActionPerformed(evt);
-                }
-            });
-        b4.setFont(new Font("Dialog", Font.PLAIN, 13));
-        cp.add(b4);
-
-        b5.setBounds(400, 170, 115, 33);
-        b5.setText("Button 5");
-        b5.setMargin(new Insets(2, 2, 2, 2));
-        b5.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent evt) {
-                    b5_ActionPerformed(evt);
-                }
-            });
-        b5.setFont(new Font("Dialog", Font.PLAIN, 13));
-        cp.add(b5);
-
+        maskeLeerenButton.setFont(new Font("Arial", Font.PLAIN, 14));
+        cp.add(maskeLeerenButton);
+        
+        l1.setBounds(10, 10, 130, 23);
+        l1.setText("Name:");
+        l1.setFont(new Font("Arial", Font.PLAIN, 17));
+        cp.add(l1);
+        l2.setBounds(10, 50, 95, 23);
+        l2.setText("Vorname:");
+        l2.setFont(new Font("Arial", Font.PLAIN, 17));
+        cp.add(l2);
+        t1.setBounds(150, 10, 230, 30);
+        t1.setText("");
+        t1.setFont(new Font("Arial", Font.PLAIN, 17));
+        cp.add(t1);
+        t2.setBounds(150, 50, 230, 30);
+        t2.setText("");
+        t2.setFont(new Font("Arial", Font.PLAIN, 17));
+        cp.add(t2);
         l3.setBounds(10, 90, 95, 23);
         l3.setText("Strasse:");
         l3.setFont(new Font("Arial", Font.PLAIN, 17));
@@ -286,17 +283,6 @@ public class GUIVorlage extends JFrame {
         t9.setText("");
         t9.setFont(new Font("Arial", Font.PLAIN, 17));
         cp.add(t9);
-
-        bMaskeLeeren.setBounds(400, 210, 115, 33);
-        bMaskeLeeren.setText("Maske leeren");
-        bMaskeLeeren.setMargin(new Insets(2, 2, 2, 2));
-        bMaskeLeeren.addActionListener(new ActionListener() { 
-                public void actionPerformed(ActionEvent evt) { 
-                    bMaskeLeeren_ActionPerformed(evt);
-                }
-            });
-        bMaskeLeeren.setFont(new Font("Arial", Font.PLAIN, 14));
-        cp.add(bMaskeLeeren);
         // Ende Komponenten
 
         setResizable(false);
@@ -344,28 +330,33 @@ public class GUIVorlage extends JFrame {
         l9.setText("");
     }
     
-    public void b1_ActionPerformed(ActionEvent evt) {
+    public void  menue4_ActionPerformed(ActionEvent evt){
+        m=4;
+        l1.setText("Kursname:");
+        l2.setText("Fach:");
+        l3.setText("Art:");
+        l4.setText("Lehrer:");
+        l5.setText("");
+        l6.setText("");
+        l7.setText("");
+        l8.setText("");
+        l9.setText("");
+    }
+    
+    public void einfuegenButton_ActionPerformed(ActionEvent evt) {
        
     }
 
-    public void b2_ActionPerformed(ActionEvent evt) {
+    public void loescheButtton_ActionPerformed(ActionEvent evt) {
         
     }
 
-    public void b3_ActionPerformed(ActionEvent evt) {
+    public void sucheButton_ActionPerformed(ActionEvent evt) {
 
     }
 
-    public void bMaskeLeeren_ActionPerformed(ActionEvent evt) {
+    public void maskeLeerenButton_ActionPerformed(ActionEvent evt) {
         maskeLeeren();
-    }
-
-    public void b4_ActionPerformed(ActionEvent evt) {
-        dispose();
-    }
-
-    public void b5_ActionPerformed(ActionEvent evt) {
-
     }
 
     private void maskeLeeren() {
