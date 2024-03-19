@@ -15,10 +15,10 @@ public class GUIVorlage extends JFrame {
     private JButton b5 = new JButton();
     private JButton b3 = new JButton();
     
-    private JButton mitglieder = new JButton();    //Mitglieder
-    private JButton sekten = new JButton();    //Sekten
-    private JButton prediger = new JButton();    //Prediger
-    private JButton sektenhaus = new JButton();    //Sektenhaus
+    private JButton mitdliederMenueButton = new JButton();    //Mitdlieder Menü-Button
+    private JButton sektenMenueButton = new JButton();    //Sekten Menü-Button
+    private JButton predigerMenueButton = new JButton();    //Prediger Menü-Button
+    private JButton sektenhausMenueButton = new JButton();    //Sektenhaus Menü-Button
     
     private JLabel l3 = new JLabel();
     private JLabel l4 = new JLabel();
@@ -40,7 +40,7 @@ public class GUIVorlage extends JFrame {
 
     public GUIVorlage(){
         // Frame-Initialisierung
-        super("SektenVerwaltung");
+        super("Sekten-Verwaltung");
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         int frameWidth = 600; 
         int frameHeight = 460;
@@ -125,36 +125,57 @@ public class GUIVorlage extends JFrame {
         t2.setText("");
         t2.setFont(new Font("Arial", Font.PLAIN, 17));
         cp.add(t2);
-        mitglieder.setBounds(10, 380, 115, 33);
-        mitglieder.setText("Schüler");
-        mitglieder.setMargin(new Insets(2, 2, 2, 2));
-        mitglieder.addActionListener(new ActionListener() {
+        
+        // Menü-Buttons
+        // Mitglieder Menü-Button
+        mitdliederMenueButton.setBounds(10, 380, 115, 33);
+        mitdliederMenueButton.setText("Mitglieder");
+        mitdliederMenueButton.setMargin(new Insets(2, 2, 2, 2));
+        mitdliederMenueButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
                     menue1_ActionPerformed(evt);
                 }
             });
-        mitglieder.setFont(new Font("Dialog", Font.PLAIN, 13));
-        cp.add(mitglieder);
-        sekten.setBounds(130, 380, 115, 33);
-        sekten.setText("Lehrer");
-        sekten.setMargin(new Insets(2, 2, 2, 2));
-        sekten.addActionListener(new ActionListener() {
+        mitdliederMenueButton.setFont(new Font("Dialog", Font.PLAIN, 13));
+        cp.add(mitdliederMenueButton);
+        
+        // Sekten Menü-Button
+        sektenMenueButton.setBounds(130, 380, 115, 33);
+        sektenMenueButton.setText("Sekten");
+        sektenMenueButton.setMargin(new Insets(2, 2, 2, 2));
+        sektenMenueButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
                     menue2_ActionPerformed(evt);
                 }
             });
-        sekten.setFont(new Font("Dialog", Font.PLAIN, 13));
-        cp.add(sekten);
-          prediger.setBounds(250, 380, 115, 33);
-        prediger.setText("Kurse");
-        prediger.setMargin(new Insets(2, 2, 2, 2));
-        prediger.addActionListener(new ActionListener() {
+        sektenMenueButton.setFont(new Font("Dialog", Font.PLAIN, 13));
+        cp.add(sektenMenueButton);
+        
+        // Prediger Menü-Button
+        predigerMenueButton.setBounds(250, 380, 115, 33);
+        predigerMenueButton.setText("Prediger");
+        predigerMenueButton.setMargin(new Insets(2, 2, 2, 2));
+        predigerMenueButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
                     menue3_ActionPerformed(evt);
                 }
             });
-        prediger.setFont(new Font("Dialog", Font.PLAIN, 13));
-        cp.add(prediger);
+        predigerMenueButton.setFont(new Font("Dialog", Font.PLAIN, 13));
+        cp.add(predigerMenueButton);
+        
+        // Sektenhaus Menü-Button
+        sektenhausMenueButton.setBounds(370, 380, 115, 33);
+        sektenhausMenueButton.setText("Sektenhaus");
+        sektenhausMenueButton.setMargin(new Insets(2, 2, 2, 2));
+        sektenhausMenueButton.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent evt) {
+                    menue2_ActionPerformed(evt);
+                }
+            });
+        sektenhausMenueButton.setFont(new Font("Dialog", Font.PLAIN, 13));
+        cp.add(sektenhausMenueButton);
+        
+        
         b1.setBounds(400, 10, 115, 33);
         b1.setText("Einfuegen");
         b1.setMargin(new Insets(2, 2, 2, 2));
