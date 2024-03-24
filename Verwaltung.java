@@ -46,7 +46,7 @@ public class Verwaltung {
         return 1;
     }
     // Einfüge-Methoden
-    public void mitgliedEinzufuegen(int pSEHAID, String pVorname, String pName, String pGeburtsdatum, String pBekehrungsdatum, String pSterbedatum, int pSEID){
+    public void mitgliedEinfuegen(int pSEHAID, String pVorname, String pName, String pGeburtsdatum, String pBekehrungsdatum, String pSterbedatum, int pSEID){
         String auftrag="INSERT INTO 'Mitglied' ('MIID', 'SEHAID', 'Vorname', 'Name', 'Geburtsdatum','Bekehrungsdatum','Sterbedatum') VALUES (NULL, '"+pSEHAID+"', '"+pVorname+"', '"+pName+"', '"+pGeburtsdatum+"','"+pBekehrungsdatum+"','"+pSterbedatum+"')";
         connector.executeStatement(auftrag);
         aktuelleFehlermeldung();
@@ -59,14 +59,14 @@ public class Verwaltung {
         aktuelleFehlermeldung();
     }
     
-    public void predigerEinfuegen(String pMIID )     //Alle Parameter übergeben
+    public void predigerEinfuegen(int pMIID )     //Alle Parameter übergeben
     {
         String auftrag="INSERT INTO 'Prediger' ('PEID', 'MIID') VALUES (NULL, '"+pMIID+"')";
         connector.executeStatement(auftrag);
         aktuelleFehlermeldung();
     }
     
-    public void sektenhausEinfuegen(String pAdresse, String pName, String pPEID )     //Alle Parameter übergeben
+    public void sektenhausEinfuegen(String pAdresse, String pName, int pPEID )     //Alle Parameter übergeben
     {
         String auftrag="INSERT INTO 'Sektenhaus' ('SEHAID', 'Adresse','Name','PEID') VALUES (NULL,'"+pAdresse+"','"+pName+"','"+pPEID+"')";
         connector.executeStatement(auftrag);

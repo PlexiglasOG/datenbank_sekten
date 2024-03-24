@@ -8,10 +8,12 @@ public class GUIVorlage extends JFrame {
     private int m=1;
 
     // Buttons
-    // Operator-Buttons
-    private JButton einfuegenButton = new JButton(); // Einfüge-Button
-    private JButton loescheButtton = new JButton(); // Lösche-Button
-    private JButton sucheButton = new JButton(); // Suche-button
+    // Operator-Buttons Einfügen
+    private JButton einfuegenButtonM = new JButton(); // Einfüge-Button Mitglied
+    private JButton einfuegenButtonS = new JButton(); // Einfüge-Button Sekte
+    private JButton einfuegenButtonSH = new JButton(); // Einfüge-Button Sektenhaus
+    private JButton einfuegenButtonP = new JButton(); // Einfüge-Button Prediger
+
     private JButton maskeLeerenButton = new JButton(); // Maske-Leeren
 
     // Menü-Buttons
@@ -20,11 +22,11 @@ public class GUIVorlage extends JFrame {
     private JButton predigerMenueButton = new JButton();    //Prediger Menü-Button
     private JButton sektenhausMenueButton = new JButton();    //Sektenhaus Menü-Button
 
-    // Einfüge-Buttons
-    private JButton mitgliederEinfuegenButton = new JButton();    //Mitdlieder Einfüge-Button
-    private JButton sektenEinfuegenButton = new JButton();    //Sekten Einfüge-Button
-    private JButton predigerEinfuegenButton = new JButton();    //Prediger Einfüge-Button
-    private JButton sektenhausEinfuegenButton = new JButton();    //Sektenhaus Einfüge-Button
+    // Einfüge-Menü-Buttons
+    private JButton mitgliederEinfuegeMenueButton = new JButton();    //Mitdlieder Einfüge-Menü-Button
+    private JButton sektenEinfuegeMenueButton = new JButton();    //Sekten Einfüge-Menü-Button
+    private JButton predigerEinfuegeMenueButton = new JButton();    //Prediger Einfüge-Menü-Button
+    private JButton sektenhausEinfuegeMenueButton = new JButton();    //Sektenhaus Einfüge-Button
 
     // Labels
     private JLabel l1 = new JLabel();
@@ -33,6 +35,7 @@ public class GUIVorlage extends JFrame {
     private JLabel l4 = new JLabel();
     private JLabel l5 = new JLabel();
     private JLabel l6 = new JLabel();
+    private JLabel l7 = new JLabel();
 
     // Textfelder
     private JTextField t1 = new JTextField();
@@ -41,6 +44,7 @@ public class GUIVorlage extends JFrame {
     private JTextField t4 = new JTextField();
     private JTextField t5 = new JTextField();
     private JTextField t6 = new JTextField();
+    private JTextField t7 = new JTextField();
 
     // Ende Attribute
     public GUIVorlage(){
@@ -126,68 +130,52 @@ public class GUIVorlage extends JFrame {
 
         // Einfüge-Buttons
         // Mitglieder Einfüge-Button
-        mitgliederEinfuegenButton.setBounds(0, 30, 200, 30);
-        mitgliederEinfuegenButton.setText("Mitglied einfügen");
-        mitgliederEinfuegenButton.setMargin(new Insets(2, 2, 2, 2));
-        mitgliederEinfuegenButton.addActionListener(new ActionListener() {
+        mitgliederEinfuegeMenueButton.setBounds(0, 30, 200, 30);
+        mitgliederEinfuegeMenueButton.setText("Mitglied einfügen");
+        mitgliederEinfuegeMenueButton.setMargin(new Insets(2, 2, 2, 2));
+        mitgliederEinfuegeMenueButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
-                    mitgliederEinfuegeButton_ActionPerformed(evt);
+                    mitgliederEinfuegeMenueButton_ActionPerformed(evt);
                 }
             });
-        mitgliederEinfuegenButton.setFont(new Font("Dialog", Font.PLAIN, 13));
-        cp.add(mitgliederEinfuegenButton);
+        mitgliederEinfuegeMenueButton.setFont(new Font("Dialog", Font.PLAIN, 13));
 
         // Sekten Einfüge-Button
-        sektenEinfuegenButton.setBounds(0, 30, 200, 30);
-        sektenEinfuegenButton.setText("Sekte einfügen");
-        sektenEinfuegenButton.setMargin(new Insets(2, 2, 2, 2));
-        sektenEinfuegenButton.addActionListener(new ActionListener() {
+        sektenEinfuegeMenueButton.setBounds(0, 30, 200, 30);
+        sektenEinfuegeMenueButton.setText("Sekte einfügen");
+        sektenEinfuegeMenueButton.setMargin(new Insets(2, 2, 2, 2));
+        sektenEinfuegeMenueButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
-                    sektenEinfuegeButton_ActionPerformed(evt);
+                    sektenEinfuegeMenueButton_ActionPerformed(evt);
                 }
             });
-        sektenEinfuegenButton.setFont(new Font("Dialog", Font.PLAIN, 13));
-        cp.add(sektenEinfuegenButton);
+        sektenEinfuegeMenueButton.setFont(new Font("Dialog", Font.PLAIN, 13));
 
         // Prediger Einfüge-Button
-        predigerEinfuegenButton.setBounds(0, 30, 200, 30);
-        predigerEinfuegenButton.setText("Prediger einfügen");
-        predigerEinfuegenButton.setMargin(new Insets(2, 2, 2, 2));
-        predigerEinfuegenButton.addActionListener(new ActionListener() {
+        predigerEinfuegeMenueButton.setBounds(0, 30, 200, 30);
+        predigerEinfuegeMenueButton.setText("Prediger einfügen");
+        predigerEinfuegeMenueButton.setMargin(new Insets(2, 2, 2, 2));
+        predigerEinfuegeMenueButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
-                    predigerEinfuegeButton_ActionPerformed(evt);
+                    predigerEinfuegeMenueButton_ActionPerformed(evt);
                 }
             });
-        predigerEinfuegenButton.setFont(new Font("Dialog", Font.PLAIN, 13));
-        cp.add(predigerEinfuegenButton);
+        predigerEinfuegeMenueButton.setFont(new Font("Dialog", Font.PLAIN, 13));
 
         // Sektenhaus Einfüge-Button
-        sektenhausEinfuegenButton.setBounds(0, 30, 200, 30);
-        sektenhausEinfuegenButton.setText("Sektenhaus einfügen");
-        sektenhausEinfuegenButton.setMargin(new Insets(2, 2, 2, 2));
-        sektenhausEinfuegenButton.addActionListener(new ActionListener() {
+        sektenhausEinfuegeMenueButton.setBounds(0, 30, 200, 30);
+        sektenhausEinfuegeMenueButton.setText("Sektenhaus einfügen");
+        sektenhausEinfuegeMenueButton.setMargin(new Insets(2, 2, 2, 2));
+        sektenhausEinfuegeMenueButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
-                    sektenhausEinfuegeButton_ActionPerformed(evt);
+                    sektenhausEinfuegeMenueButton_ActionPerformed(evt);
                 }
             });
-        sektenhausEinfuegenButton.setFont(new Font("Dialog", Font.PLAIN, 13));
-        cp.add(sektenhausEinfuegenButton);
+        sektenhausEinfuegeMenueButton.setFont(new Font("Dialog", Font.PLAIN, 13));
 
         // Operator-Buttons
-        // Suche-Button
-        sucheButton.setBounds(400, 90, 115, 33);
-        sucheButton.setText("Suchen");
-        sucheButton.setMargin(new Insets(2, 2, 2, 2));
-        sucheButton.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent evt) {
-                    sucheButton_ActionPerformed(evt);
-                }
-            });
-        sucheButton.setFont(new Font("Dialog", Font.PLAIN, 13));
-        cp.add(sucheButton);
-
         // MaskeLeeren-Button
-        maskeLeerenButton.setBounds(400, 130, 115, 33);
+        maskeLeerenButton.setBounds(450, 300, 100, 30);
         maskeLeerenButton.setText("Maske leeren");
         maskeLeerenButton.setMargin(new Insets(2, 2, 2, 2));
         maskeLeerenButton.addActionListener(new ActionListener() { 
@@ -197,6 +185,50 @@ public class GUIVorlage extends JFrame {
             });
         maskeLeerenButton.setFont(new Font("Arial", Font.PLAIN, 14));
         cp.add(maskeLeerenButton);
+
+        // Einfüge-Button Mitglied
+        einfuegenButtonM.setBounds(450, 350, 100, 30);
+        einfuegenButtonM.setText("Einfügen");
+        einfuegenButtonM.setMargin(new Insets(2, 2, 2, 2));
+        einfuegenButtonM.addActionListener(new ActionListener() { 
+                public void actionPerformed(ActionEvent evt) { 
+                    einfuegeButtonM_ActionPerformed(evt);
+                }
+            });
+        einfuegenButtonM.setFont(new Font("Arial", Font.PLAIN, 14));
+
+        // Einfüge-Button Sekte
+        einfuegenButtonS.setBounds(450, 350, 100, 30);
+        einfuegenButtonS.setText("Einfügen");
+        einfuegenButtonS.setMargin(new Insets(2, 2, 2, 2));
+        einfuegenButtonS.addActionListener(new ActionListener() { 
+                public void actionPerformed(ActionEvent evt) { 
+                    einfuegeButtonS_ActionPerformed(evt);
+                }
+            });
+        einfuegenButtonS.setFont(new Font("Arial", Font.PLAIN, 14));
+
+        // Einfüge-Button Sektenhaus
+        einfuegenButtonSH.setBounds(450, 350, 100, 30);
+        einfuegenButtonSH.setText("Einfügen");
+        einfuegenButtonSH.setMargin(new Insets(2, 2, 2, 2));
+        einfuegenButtonSH.addActionListener(new ActionListener() { 
+                public void actionPerformed(ActionEvent evt) { 
+                    einfuegeButtonSH_ActionPerformed(evt);
+                }
+            });
+        einfuegenButtonSH.setFont(new Font("Arial", Font.PLAIN, 14));
+
+        // Einfüge-Button Prediger
+        einfuegenButtonP.setBounds(450, 350, 100, 30);
+        einfuegenButtonP.setText("Einfügen");
+        einfuegenButtonP.setMargin(new Insets(2, 2, 2, 2));
+        einfuegenButtonP.addActionListener(new ActionListener() { 
+                public void actionPerformed(ActionEvent evt) { 
+                    einfuegeButtonP_ActionPerformed(evt);
+                }
+            });
+        einfuegenButtonP.setFont(new Font("Arial", Font.PLAIN, 14));
 
         //Textfelder
         t1.setBounds(150, 100, 230, 30);
@@ -217,6 +249,9 @@ public class GUIVorlage extends JFrame {
         t6.setBounds(150, 300, 230, 30);
         t6.setText("");
         t6.setFont(new Font("Arial", Font.PLAIN, 17));
+        t7.setBounds(150, 340, 230, 30);
+        t7.setText("");
+        t7.setFont(new Font("Arial", Font.PLAIN, 17));
 
         //Label
         l1.setBounds(10, 100, 130, 23);
@@ -230,19 +265,23 @@ public class GUIVorlage extends JFrame {
         l5.setBounds(10, 260, 130, 23);
         l5.setFont(new Font("Arial", Font.PLAIN, 17));
         l6.setBounds(10, 300, 130, 23);
-        l6.setFont(new Font("Arial", Font.PLAIN, 17));  
+        l6.setFont(new Font("Arial", Font.PLAIN, 17)); 
+        l7.setBounds(10, 340, 130, 23);
+        l7.setFont(new Font("Arial", Font.PLAIN, 17)); 
 
         setResizable(false);
         setVisible(true);
     }
 
     // Anfang Methoden
-    public void mitgliederEinfuegeButton_ActionPerformed(ActionEvent evt){
+    public void mitgliederEinfuegeMenueButton_ActionPerformed(ActionEvent evt){
         m=1;
         Container cp = getContentPane();
         removeAllLabelsAndTextfields();
         setBackgroundcolorEinfuegeButtonsGray();
-        mitgliederEinfuegenButton.setBackground(Color.GREEN);
+        mitgliederEinfuegeMenueButton.setBackground(Color.GREEN);
+        removeAllEinfuegeButtons();
+        cp.add(einfuegenButtonM);
         l1.setText("Name:");
         cp.add(l1);
         l2.setText("Vorname:");
@@ -253,8 +292,10 @@ public class GUIVorlage extends JFrame {
         cp.add(l4); 
         l5.setText("Sterbedatum:");
         cp.add(l5); 
-        l6.setText("Mitglieder-ID:");
+        l6.setText("Sektenhaus-ID:");
         cp.add(l6);  
+        l7.setText("Sekten-ID:");
+        cp.add(l7);  
 
         cp.add(t1);
         cp.add(t2);
@@ -262,17 +303,21 @@ public class GUIVorlage extends JFrame {
         cp.add(t4);
         cp.add(t5);
         cp.add(t6);
+        cp.add(t7);
 
         setResizable(false);
         setVisible(true);
     }
 
-    public void sektenEinfuegeButton_ActionPerformed(ActionEvent evt){
+    public void sektenEinfuegeMenueButton_ActionPerformed(ActionEvent evt){
         m=2;
         Container cp = getContentPane();
         removeAllLabelsAndTextfields();
         setBackgroundcolorEinfuegeButtonsGray();
-        sektenEinfuegenButton.setBackground(Color.GREEN);
+        sektenEinfuegeMenueButton.setBackground(Color.GREEN);
+        removeAllEinfuegeButtons();
+        cp.add(einfuegenButtonS);
+        
         l1.setText("Name:");
         cp.add(l1);
         l2.setText("Gründer:");
@@ -281,58 +326,64 @@ public class GUIVorlage extends JFrame {
         cp.add(l3);
         l4.setText("Glaubenssatz:");
         cp.add(l4); 
-        l5.setText("Mitglieder-ID:");
+        l5.setText("Entstehungsjahr:");
         cp.add(l5); 
+        l6.setText("Zusatzinformationen:");
+        cp.add(l6); 
+        l7.setText("Mitgliederzahl:");
+        cp.add(l7); 
 
         cp.add(t1);
         cp.add(t2);
         cp.add(t3);
         cp.add(t4);
         cp.add(t5);
+        cp.add(t6);
+        cp.add(t7);
         setResizable(false);
         setVisible(true);
     }
 
-    public void predigerEinfuegeButton_ActionPerformed(ActionEvent evt){
+    public void predigerEinfuegeMenueButton_ActionPerformed(ActionEvent evt){
         m=3;
         Container cp = getContentPane();
         removeAllLabelsAndTextfields();
         setBackgroundcolorEinfuegeButtonsGray();
-        predigerEinfuegenButton.setBackground(Color.GREEN);
-        l1.setText("Prediger-ID:");
+        predigerEinfuegeMenueButton.setBackground(Color.GREEN);
+        removeAllEinfuegeButtons();
+        cp.add(einfuegenButtonP);
+        l1.setText("Mitglieder-ID:");
         cp.add(l1);
-
         cp.add(t1);
-
         setResizable(false);
         setVisible(true);
     }
 
-    public void sektenhausEinfuegeButton_ActionPerformed(ActionEvent evt){
+    public void sektenhausEinfuegeMenueButton_ActionPerformed(ActionEvent evt){
         m=4;
         Container cp = getContentPane();
         removeAllLabelsAndTextfields();
         setBackgroundcolorEinfuegeButtonsGray();
-        sektenhausEinfuegenButton.setBackground(Color.GREEN);
+        sektenhausEinfuegeMenueButton.setBackground(Color.GREEN);
+        removeAllEinfuegeButtons();
+        cp.add(einfuegenButtonSH);
         l1.setText("Name:");
         cp.add(l1);
         l2.setText("Adresse:");
         cp.add(l2);
-        l3.setText("Sektenhaus-ID:");
+        l3.setText("Sektenhaus-PredigerID:");
         cp.add(l3);
-
         cp.add(t1);
         cp.add(t2);
         cp.add(t3);
-
         setResizable(false);
         setVisible(true);
     }
 
     public void mitgliederMenue_ActionPerformed(ActionEvent evt) {
         Container cp = getContentPane();
-        removeAllEinfuegeButtons();
-        cp.add(mitgliederEinfuegenButton);
+        removeAllEinfuegeMenues();
+        cp.add(mitgliederEinfuegeMenueButton);
         setBackgroundcolorMenueButtonsGray();
         mitgliederMenueButton.setBackground(Color.GREEN);
         setResizable(false);
@@ -341,8 +392,8 @@ public class GUIVorlage extends JFrame {
 
     public void sektenMenue_ActionPerformed(ActionEvent evt) {
         Container cp = getContentPane();
-        removeAllEinfuegeButtons();
-        cp.add(sektenEinfuegenButton);
+        removeAllEinfuegeMenues();
+        cp.add(sektenEinfuegeMenueButton);
         setBackgroundcolorMenueButtonsGray();
         sektenMenueButton.setBackground(Color.GREEN);
         setResizable(false);
@@ -351,8 +402,8 @@ public class GUIVorlage extends JFrame {
 
     public void predigerMenue_ActionPerformed(ActionEvent evt) {
         Container cp = getContentPane();
-        removeAllEinfuegeButtons();
-        cp.add(predigerEinfuegenButton);
+        removeAllEinfuegeMenues();
+        cp.add(predigerEinfuegeMenueButton);
         setBackgroundcolorMenueButtonsGray();
         predigerMenueButton.setBackground(Color.GREEN);
         setResizable(false);
@@ -361,24 +412,46 @@ public class GUIVorlage extends JFrame {
 
     public void sektenhausMenue_ActionPerformed(ActionEvent evt) {
         Container cp = getContentPane();
-        removeAllEinfuegeButtons();
-        cp.add(sektenhausEinfuegenButton);
+        removeAllEinfuegeMenues();
+        cp.add(sektenhausEinfuegeMenueButton);
         setBackgroundcolorMenueButtonsGray();
         sektenhausMenueButton.setBackground(Color.GREEN);
         setResizable(false);
         setVisible(true);
     }
 
-    public void einfuegenButton_ActionPerformed(ActionEvent evt) {
-
+    public void einfuegeButtonM_ActionPerformed(ActionEvent evt) {
+        int sektenhausID = Integer.parseInt(t6.getText());
+        String name = t1.getText();
+        String vorname = t2.getText();
+        String gebDat = t3.getText();
+        String bekDat = t4.getText();
+        String sterbDat = t5.getText();
+        int sektenID = Integer.parseInt(t7.getText());
+        verwaltung.mitgliedEinfuegen(sektenhausID, name, vorname, gebDat, bekDat, sterbDat, sektenID);
     }
-
-    public void loescheButtton_ActionPerformed(ActionEvent evt) {
-
+    
+    public void einfuegeButtonS_ActionPerformed(ActionEvent evt) {
+        String name = t1.getText();
+        String gruender = t2.getText();
+        String apoDat =  t3.getText();
+        String glaubenssatz =  t4.getText();
+        int entJahr =  Integer.parseInt(t5.getText());
+        String zusatzInfo =  t6.getText();
+        int mitgliederZahl =  Integer.parseInt(t7.getText());
+        verwaltung.sekteEinfuegen(name, gruender, apoDat, glaubenssatz, entJahr, zusatzInfo, mitgliederZahl);
     }
-
-    public void sucheButton_ActionPerformed(ActionEvent evt) {
-
+    
+    public void einfuegeButtonSH_ActionPerformed(ActionEvent evt) {
+        String adresse = t2.getText();
+        String name = t1.getText();
+        int predigerID =  Integer.parseInt(t3.getText());
+        verwaltung.sektenhausEinfuegen(adresse, name, predigerID);
+    }
+    
+    public void einfuegeButtonP_ActionPerformed(ActionEvent evt) {
+        int mitgliederID = Integer.parseInt(t1.getText());
+        verwaltung.predigerEinfuegen(mitgliederID);
     }
 
     public void maskeLeerenButton_ActionPerformed(ActionEvent evt) {
@@ -393,6 +466,7 @@ public class GUIVorlage extends JFrame {
         cp.remove(l4);
         cp.remove(l5);
         cp.remove(l6);
+        cp.remove(l7);
 
         cp.remove(t1);
         cp.remove(t2);
@@ -400,14 +474,23 @@ public class GUIVorlage extends JFrame {
         cp.remove(t4);
         cp.remove(t5);
         cp.remove(t6);
+        cp.remove(t7);
     }
-
+    
     public void removeAllEinfuegeButtons(){
         Container cp = getContentPane();
-        cp.remove(mitgliederEinfuegenButton);
-        cp.remove(sektenEinfuegenButton);
-        cp.remove(predigerEinfuegenButton);
-        cp.remove(sektenhausEinfuegenButton);
+        cp.remove(einfuegenButtonP);
+        cp.remove(einfuegenButtonM);
+        cp.remove(einfuegenButtonSH);
+        cp.remove(einfuegenButtonS);
+    }
+    
+    public void removeAllEinfuegeMenues(){
+        Container cp = getContentPane();
+        cp.remove(mitgliederEinfuegeMenueButton);
+        cp.remove(sektenEinfuegeMenueButton);
+        cp.remove(predigerEinfuegeMenueButton);
+        cp.remove(sektenhausEinfuegeMenueButton);
     }
 
     public void setBackgroundcolorMenueButtonsGray(){
@@ -416,14 +499,14 @@ public class GUIVorlage extends JFrame {
         sektenhausMenueButton.setBackground(Color.GRAY);
         predigerMenueButton.setBackground(Color.GRAY);
     }
-    
-     public void setBackgroundcolorEinfuegeButtonsGray(){
-        mitgliederEinfuegenButton.setBackground(Color.GRAY);
-        sektenEinfuegenButton.setBackground(Color.GRAY);
-        sektenhausEinfuegenButton.setBackground(Color.GRAY);
-        predigerEinfuegenButton.setBackground(Color.GRAY);
+
+    public void setBackgroundcolorEinfuegeButtonsGray(){
+        mitgliederEinfuegeMenueButton.setBackground(Color.GRAY);
+        sektenEinfuegeMenueButton.setBackground(Color.GRAY);
+        sektenhausEinfuegeMenueButton.setBackground(Color.GRAY);
+        predigerEinfuegeMenueButton.setBackground(Color.GRAY);
     }
-    
+
     private void maskeLeeren() {
         t1.setText("");
         t2.setText("");
@@ -431,5 +514,6 @@ public class GUIVorlage extends JFrame {
         t4.setText("");
         t5.setText("");
         t6.setText("");
+        t7.setText("");
     }
 }
