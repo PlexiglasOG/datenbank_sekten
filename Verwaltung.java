@@ -23,7 +23,6 @@ public class Verwaltung {
             System.out.println();
         }
     }
-   
     
     // Ausgabe-Methoden:
     public void alleSektenAusgeben(){       
@@ -32,7 +31,7 @@ public class Verwaltung {
     }
 
     public void alleMitgliederAusgeben(){       
-        String auftrag="select * from Mitlgied";
+        String auftrag="select * From Mitglied";
         sqlBefehlAusfuehren(auftrag);
     }
     
@@ -42,7 +41,7 @@ public class Verwaltung {
     }
     
     public int gibIDvonMitglied(String pName, String pVorname){
-        String auftrag = "select MIID from Mitglieder where Name = "+pName+" AND Vorname = "+pVorname;
+        String auftrag = "select MIID from Mitglied where Name = "+pName+" AND Vorname = "+pVorname;
         return 1;
     }
     // Einfüge-Methoden

@@ -3,7 +3,7 @@ public class DatabaseConnector{
     private Connection connection;  
     private QueryResult currentQueryResult = null;
     private String message = null;
-
+   
      public DatabaseConnector(String pIP, int pPort, String pDatabase, String pUsername, String pPassword){
          try {
             //Laden der Treiberklasse
@@ -11,7 +11,6 @@ public class DatabaseConnector{
             Class.forName("org.sqlite.JDBC");
             //Verbindung herstellen
             connection = DriverManager.getConnection("jdbc:sqlite:"+pDatabase);
-            
         } catch (Exception e) {
             message = e.getMessage();
         }
