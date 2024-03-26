@@ -62,7 +62,7 @@ public class GUIVorlage extends JFrame {
         verwaltung = new Verwaltung();
 
         // Anfang Komponenten
-        JTextArea textfeld = new JTextArea(5, 30);
+        JTextArea textfeld = new JTextArea(450, 30);
         textfeld.setText("Lorem ipsum dolor sit amet");
         //Zeilenumbruch wird eingeschaltet
         textfeld.setLineWrap(true);
@@ -332,8 +332,7 @@ public class GUIVorlage extends JFrame {
         addLabel(3, "Bekehrungsdatum:");
         addLabel(4, "Sterbedatum:");
         addLabel(5, "Sektenhaus-ID:"); 
-        addLabel(6, "Sekten-ID:"); 
-        addTextfields(7);
+        addTextfields(6);
         setResizable(false);
         setVisible(true);
     }
@@ -452,7 +451,7 @@ public class GUIVorlage extends JFrame {
         String bekDat = textfields[3].getText();
         String sterbDat = textfields[4].getText();
         int sektenID = Integer.parseInt(textfields[6].getText());
-        verwaltung.mitgliedEinfuegen(sektenhausID, name, vorname, gebDat, bekDat, sterbDat, sektenID);
+        verwaltung.mitgliedEinfuegen(sektenhausID, name, vorname, gebDat, bekDat, sterbDat);
     }
     
     public void einfuegeButtonS_ActionPerformed(ActionEvent evt) {
@@ -550,18 +549,25 @@ public class GUIVorlage extends JFrame {
         predigerSucheMenueButton.setBackground(Color.GRAY);
     }
     
-    private void addTextfields(int pAnzahl){
+    public void addTextfields(int pAnzahl){
         for(int i=0;i<pAnzahl;i++){
            cp.add(textfields[i]);
         }
     }
     
-    private void addLabel(int pLabel, String pText){
+    public void addLabel(int pLabel, String pText){
         labels[pLabel].setText(pText);
         cp.add(labels[pLabel]);
     }
     
-    private void maskeLeeren() {
+    public void setButton(String pName, JButton pButton, int pKoordinate1, int pKoordinate2, int pKoordinate3, int pKoordinate4){
+        pButton.setBounds(pKoordinate1, pKoordinate2, pKoordinate3, pKoordinate4);
+        pButton.setText(pName);
+        pButton.setMargin(new Insets(2, 2, 2, 2));
+        pButton.setFont(new Font("Dialog", Font.PLAIN, 13));
+    }
+    
+    public void maskeLeeren() {
         for(int i=0;i<textfields.length;i++){
            textfields[i].setText("");
         }

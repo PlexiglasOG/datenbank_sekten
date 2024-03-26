@@ -11,12 +11,16 @@ public class DatabaseConnector{
             Class.forName("org.sqlite.JDBC");
             //Verbindung herstellen
             connection = DriverManager.getConnection("jdbc:sqlite:"+pDatabase);
+            System.out.println("connection=" + connection);
         } catch (Exception e) {
             message = e.getMessage();
+            System.out.println("message=" + e.getMessage());
         }
     }
 
     public void executeStatement(String pSQLStatement){  
+        System.out.println("executing..." + pSQLStatement);
+              
         currentQueryResult = null;
         message = null;
 
@@ -24,7 +28,7 @@ public class DatabaseConnector{
             Statement statement = connection.createStatement();
             //SQL Anweisung an die DB schicken.
             if (statement.execute(pSQLStatement)) { //Fall 1: Es gibt ein Ergebnis
-
+                System.out.println("gefunden" + pSQLStatement);
                 //Resultset auslesen
                 ResultSet resultset = statement.getResultSet();
 
@@ -68,11 +72,13 @@ public class DatabaseConnector{
 
             } else { //Fall 2: Es gibt kein Ergebnis.
                 //Statement ohne Ergebnisobjekt schliessen
+                System.out.println("nix gefunden" + pSQLStatement);
                 statement.close();       
             }
 
         } catch (Exception e) {
             //Fehlermeldung speichern
+            System.out.println(e.getMessage());
             message = e.getMessage();
         }
     }
