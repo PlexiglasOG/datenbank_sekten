@@ -3,52 +3,38 @@ import java.awt.event.*;
 import javax.swing.*; 
 import javax.swing.border.*;
 public class GUIVorlage extends JFrame {
-    // Anfang Attribute
     private Verwaltung verwaltung;
     private int m=1;
 
-    // Buttons
-    // Operator-Buttons Einfügen
-    private JButton einfuegenButtonM = new JButton(); // Einfüge-Button Mitglied
-    private JButton einfuegenButtonS = new JButton(); // Einfüge-Button Sekte
-    private JButton einfuegenButtonSH = new JButton(); // Einfüge-Button Sektenhaus
-    private JButton einfuegenButtonP = new JButton(); // Einfüge-Button Prediger
-
+    // Buttons -> [0]=Mitglied, [1]=Sekte, [2]=Sektenhaus, [3]=Prediger, [4]=isTeilVon, [5]=Menü
+    
+    //Menü
+    // Menü-Buttons
+    private JButton[] menue = {new JButton(),  new JButton(),  new JButton(),  new JButton(), new JButton(), new JButton()};
+    
+    //Untermenü
+    // Einfüge-Menü-Buttons
+    private JButton[] einfuegeMenue = {new JButton(),  new JButton(),  new JButton(),  new JButton()};
+    // Suche-Menü-Buttons 
+    private JButton[] sucheMenue = {new JButton(),  new JButton(),  new JButton(),  new JButton()};
+    // Bearbeiten-Menü-Buttons
+    private JButton[] bearbeiteMenue = {new JButton(),  new JButton(),  new JButton(),  new JButton()};
+    // Loeschen-Menü-Buttons
+    private JButton[] loescheMenue = {new JButton(),  new JButton(),  new JButton(),  new JButton()};
+    
+    // Operator-Buttons 
+    //Einfügen
+    private JButton[] einfuegen = { new JButton(),  new JButton(),  new JButton(),  new JButton()};
+    //Löschen
+    private JButton[] loeschen = { new JButton(),  new JButton(),  new JButton(),  new JButton()};
+    //Suchen
+    private JButton[] suchen = { new JButton(),  new JButton(),  new JButton(),  new JButton()};
+    //Bearbeiten
+    private JButton[] bearbeiten = { new JButton(),  new JButton(),  new JButton(),  new JButton()};
+    
     private JButton maskeLeerenButton = new JButton(); // Maske-Leeren
     private JButton queryAbschickenButton = new JButton(); // Query abschicken 
-
-    // Menü-Buttons
-    private JButton mitgliederMenueButton = new JButton();    //Mitglieder Menü-Button
-    private JButton sektenMenueButton = new JButton();    //Sekten Menü-Button
-    private JButton predigerMenueButton = new JButton();    //Prediger Menü-Button
-    private JButton sektenhausMenueButton = new JButton();    //Sektenhaus Menü-Button
-    private JButton sqlBefehlMenueButton = new JButton(); //SQL-Befehl Menü-Button  
-    private JButton sekteBuchenMenueButton = new JButton(); //"SekteBuchen" Menü-Button   
-
-    // Einfüge-Menü-Buttons
-    private JButton mitgliederEinfuegeMenueButton = new JButton();    //Mitglieder Einfüge-Menü-Button
-    private JButton sektenEinfuegeMenueButton = new JButton();    //Sekten Einfüge-Menü-Button
-    private JButton predigerEinfuegeMenueButton = new JButton();    //Prediger Einfüge-Menü-Button
-    private JButton sektenhausEinfuegeMenueButton = new JButton();    //Sektenhaus Einfüge-Button
-
-    // Suche-Menü-Buttons 
-    private JButton mitgliederSucheMenueButton = new JButton();    //Mitglieder Suche-Menü-Button
-    private JButton sektenSucheMenueButton = new JButton();    //Sekten Suche-Menü-Button
-    private JButton predigerSucheMenueButton = new JButton();    //Prediger Suche-Menü-Button
-    private JButton sektenhausSucheMenueButton = new JButton();    //Sektenhaus Suche-Button
-
-    // Bearbeiten-Menü-Buttons
-    private JButton mitgliederBearbeitenMenueButton = new JButton();    //Mitglieder Bearbeiten-Menü-Button
-    private JButton sektenBearbeitenMenueButton = new JButton();    //Sekten Bearbeiten-Menü-Button
-    private JButton predigerBearbeitenMenueButton = new JButton();    //Prediger Bearbeiten-Menü-Button
-    private JButton sektenhausBearbeitenMenueButton = new JButton();    //Sektenhaus Bearbeiten-Button
-
-    // Loeschen-Menü-Buttons
-    private JButton mitgliederLoeschenMenueButton = new JButton();    //Mitglieder Loeschen-Menü-Button
-    private JButton sektenLoeschenMenueButton = new JButton();    //Sekten Loeschen-Menü-Button
-    private JButton predigerLoeschenMenueButton = new JButton();    //Prediger Loeschen-Menü-Button
-    private JButton sektenhausLoeschenMenueButton = new JButton();    //Sektenhaus Loeschen-Button
-
+    
     // Labels
     private JLabel[] labels = {new JLabel(), new JLabel(), new JLabel(), new JLabel(), new JLabel(), new JLabel(), new JLabel(), new JLabel(), new JLabel(), new JLabel(), new JLabel(), new JLabel()};
     // Textfelder
@@ -61,12 +47,17 @@ public class GUIVorlage extends JFrame {
         frameInitialisieren();
         verwaltung = new Verwaltung();
         setEinstellungenMenueButtons();
-        setEinstellungenEinfuegenButtons();
+        
+        setEinstellungenEinfuegen();
         setEinstellungenLoeschenButtons();
         setEinstellungenBearbeitenButtons();
         setEinstellungenSuchenButtons();
         setEinstellungenOperatorButtons();
+        
         setEinstellungenEinfuegeOperatorButtons();
+        setEinstellungenSuchenOperatorButtons();
+        setEinstellungenLoeschenOperatorButtons();
+        setEinstellungenBearbeitenOperatorButtons();
 
         // Anfang Komponenten
         JTextArea textfeld = new JTextArea(450, 30);
@@ -83,7 +74,7 @@ public class GUIVorlage extends JFrame {
         textfeld.paste();
 
         setEinstellungenTextfelderUndLabels();
-        
+
         setBackgroundcolorMenueButtonsGray();
         setBackgroundcolorUnterMenuesGray();
 
@@ -92,19 +83,19 @@ public class GUIVorlage extends JFrame {
     }
 
     public void mitgliederMenue_ActionPerformed(ActionEvent evt) {
-        menuePerformed(mitgliederMenueButton, mitgliederEinfuegeMenueButton, mitgliederSucheMenueButton, mitgliederBearbeitenMenueButton, mitgliederLoeschenMenueButton);
+        menuePerformed(menue[0], einfuegeMenue[0], sucheMenue[0], bearbeiteMenue[0], loescheMenue[0]);
     }
 
     public void sektenMenue_ActionPerformed(ActionEvent evt) {
-        menuePerformed(sektenMenueButton, sektenEinfuegeMenueButton, sektenSucheMenueButton, sektenBearbeitenMenueButton, sektenLoeschenMenueButton);
+        menuePerformed(menue[1], einfuegeMenue[1], sucheMenue[1], bearbeiteMenue[1], loescheMenue[1]);
     }
 
     public void predigerMenue_ActionPerformed(ActionEvent evt) {
-        menuePerformed(predigerMenueButton, predigerEinfuegeMenueButton, predigerSucheMenueButton, predigerBearbeitenMenueButton, predigerLoeschenMenueButton);
+        menuePerformed(menue[3], einfuegeMenue[3], sucheMenue[3], bearbeiteMenue[3], loescheMenue[3]);
     }
 
     public void sektenhausMenue_ActionPerformed(ActionEvent evt) {
-        menuePerformed(sektenhausMenueButton, sektenhausEinfuegeMenueButton, sektenhausSucheMenueButton, sektenhausBearbeitenMenueButton, sektenhausLoeschenMenueButton);
+        menuePerformed(menue[2], einfuegeMenue[2], sucheMenue[2], bearbeiteMenue[2], loescheMenue[2]);
     }
 
     public void sekteBuchenMenue_ActionPerformed(ActionEvent evt) {
@@ -113,7 +104,7 @@ public class GUIVorlage extends JFrame {
         removeAllLabelsAndTextfields();
         removeAllLabelsAndTextfields();
         setBackgroundcolorMenueButtonsGray();
-        sekteBuchenMenueButton.setBackground(Color.GREEN);
+        menue[4].setBackground(Color.GREEN);
 
         setResizable(false);
         setVisible(true);
@@ -128,84 +119,96 @@ public class GUIVorlage extends JFrame {
         addLabel(0, "SQL-Befehl:");
         addTextfields(1);
         setBackgroundcolorMenueButtonsGray();
-        sqlBefehlMenueButton.setBackground(Color.GREEN);
+        menue[5].setBackground(Color.GREEN);
 
         setResizable(false);
         setVisible(true);
     }
-    
+
     // Einfügen-Menü-ActionPerformed
-    public void mitgliederEinfuegeMenueButton_ActionPerformed(ActionEvent evt){
+    public void mitgliederEinfuegeMenue_ActionPerformed(ActionEvent evt){
         String[] array = {"Name:", "Vorname:", "Geburtsdatum:", "Bekehrungsdatum:", "Sterbedatum:", "Sektenhaus-ID:"};
-        einfuegeMenueButtonPerformed(array, mitgliederEinfuegeMenueButton, einfuegenButtonM);
+        einfuegeMenueButtonPerformed(array, einfuegeMenue[0], einfuegen[0]);
     }
 
-    public void sektenEinfuegeMenueButton_ActionPerformed(ActionEvent evt){
+    public void sektenEinfuegeMenue_ActionPerformed(ActionEvent evt){
         String[] array = {"Name:", "Gründer:", "Apokalipsedatum:", "Glaubenssatz:", "Entstehungsjahr:", "Zusatzinformationen:", "Mitgliederzahl:"};
-        einfuegeMenueButtonPerformed(array, sektenEinfuegeMenueButton, einfuegenButtonS);
+        einfuegeMenueButtonPerformed(array, einfuegeMenue[1], einfuegen[1]);
     }
 
-    public void predigerEinfuegeMenueButton_ActionPerformed(ActionEvent evt){
+    public void predigerEinfuegeMenue_ActionPerformed(ActionEvent evt){
         String[] array = {"Mitglieder-ID:"};
-        einfuegeMenueButtonPerformed(array, predigerEinfuegeMenueButton, einfuegenButtonP);
+        einfuegeMenueButtonPerformed(array, einfuegeMenue[3], einfuegen[3]);
     }
 
-    public void sektenhausEinfuegeMenueButton_ActionPerformed(ActionEvent evt){
+    public void sektenhausEinfuegeMenue_ActionPerformed(ActionEvent evt){
         String[] array = {"Name:", "Adresse:", "Sektenhaus-PredigerID:"};
-        einfuegeMenueButtonPerformed(array, sektenhausEinfuegeMenueButton, einfuegenButtonSH);
+        einfuegeMenueButtonPerformed(array, einfuegeMenue[2], einfuegen[2]);
     }
-    
+
     // Suchen-Menü-ActionPerformed
     public void mitgliederSuchenMenueButton_ActionPerformed(ActionEvent evt){
-        suchenMenueButtonPerformed(mitgliederSucheMenueButton);
+        String[] array = {"Mitglieder-ID: ", "Name:", "Vorname:", "Geburtsdatum:", "Bekehrungsdatum:", "Sterbedatum:", "Sektenhaus-ID:"};
+        suchenMenueButtonPerformed(array, sucheMenue[0], suchen[0]);
     }
 
     public void sektenSuchenMenueButton_ActionPerformed(ActionEvent evt){
-        suchenMenueButtonPerformed(sektenSucheMenueButton);
+        String[] array = {"Sekten-ID: ", "Name:", "Gründer:", "Apokalipsedatum:", "Glaubenssatz:", "Entstehungsjahr:", "Zusatzinformationen:", "Mitgliederzahl:"};
+        suchenMenueButtonPerformed(array, sucheMenue[1], suchen[1]);
     }
 
     public void predigerSuchenMenueButton_ActionPerformed(ActionEvent evt){
-        suchenMenueButtonPerformed(predigerSucheMenueButton);
+        String[] array = {"Mitglieder-ID: ", "Prediger-ID: "};
+        suchenMenueButtonPerformed(array, sucheMenue[3], suchen[3]);
     }
 
     public void sektenhausSuchenMenueButton_ActionPerformed(ActionEvent evt){
-        suchenMenueButtonPerformed(sektenhausSucheMenueButton);
+        String[] array = {"Sektenhaus-ID: ", "Name:", "Adresse:", "Sektenhaus-PredigerID:"};
+        suchenMenueButtonPerformed(array, sucheMenue[2], suchen[2]);
     }
-    
+
     // Bearbeiten-Menü-ActionPerformed
-    public void mitgliederBearbeitenMenueButton_ActionPerformed(ActionEvent evt){
-        bearbeitenMenueButtonPerformed(mitgliederBearbeitenMenueButton);
+    public void mitgliederBearbeitenMenue_ActionPerformed(ActionEvent evt){
+        String[] array = {};
+        bearbeitenMenueButtonPerformed(array, bearbeiteMenue[0], bearbeiten[0]);
     }
 
-    public void sektenBearbeitenMenueButton_ActionPerformed(ActionEvent evt){
-        bearbeitenMenueButtonPerformed(sektenBearbeitenMenueButton);
+    public void sektenBearbeitenMenue_ActionPerformed(ActionEvent evt){
+        String[] array = {};
+        bearbeitenMenueButtonPerformed(array, bearbeiteMenue[1], bearbeiten[1]);
     }
 
-    public void predigerBearbeitenMenueButton_ActionPerformed(ActionEvent evt){
-        bearbeitenMenueButtonPerformed(predigerBearbeitenMenueButton);
+    public void predigerBearbeitenMenue_ActionPerformed(ActionEvent evt){
+       String[] array = {};
+        bearbeitenMenueButtonPerformed(array, bearbeiteMenue[3], bearbeiten[3]);
     }
 
-    public void sektenhausBearbeitenMenueButton_ActionPerformed(ActionEvent evt){
-        bearbeitenMenueButtonPerformed(sektenhausBearbeitenMenueButton);
+    public void sektenhausBearbeitenMenue_ActionPerformed(ActionEvent evt){
+        String[] array = {};
+        bearbeitenMenueButtonPerformed(array, bearbeiteMenue[2], bearbeiten[2]);
     }
-    
+
     // Loeschen-Menü-ActionPerformed
-    public void mitgliederLoeschenMenueButton_ActionPerformed(ActionEvent evt){
-        loeschenMenueButtonPerformed(mitgliederLoeschenMenueButton);
+    public void mitgliederLoeschenMenue_ActionPerformed(ActionEvent evt){
+         String[] array = {};
+        loeschenMenueButtonPerformed(array, loescheMenue[0], loeschen[0]);
     }
 
-    public void sektenLoeschenMenueButton_ActionPerformed(ActionEvent evt){
-        loeschenMenueButtonPerformed(sektenLoeschenMenueButton);
+    public void sektenLoeschenMenue_ActionPerformed(ActionEvent evt){
+         String[] array = {};
+        loeschenMenueButtonPerformed(array, loescheMenue[1], loeschen[1]);
     }
 
-    public void predigerLoeschenMenueButton_ActionPerformed(ActionEvent evt){
-        loeschenMenueButtonPerformed(predigerLoeschenMenueButton);
+    public void predigerLoeschenMenue_ActionPerformed(ActionEvent evt){
+         String[] array = {};
+        loeschenMenueButtonPerformed(array, loescheMenue[3], loeschen[3]);
     }
 
-    public void sektenhausLoeschenMenueButton_ActionPerformed(ActionEvent evt){
-        loeschenMenueButtonPerformed(sektenhausLoeschenMenueButton);
+    public void sektenhausLoeschenMenue_ActionPerformed(ActionEvent evt){
+         String[] array = {};
+        loeschenMenueButtonPerformed(array, loescheMenue[2], loeschen[2]);
     }
-    
+
     // Einfüge-Operator-Button-ActionPerformed
     public void einfuegeButtonM_ActionPerformed(ActionEvent evt) {
         int sektenhausID = Integer.parseInt(textfields[5].getText());
@@ -255,7 +258,7 @@ public class GUIVorlage extends JFrame {
         removeAllLabelsAndTextfields();
         setBackgroundcolorUnterMenuesGray();
         pButton.setBackground(Color.GREEN);
-        removeAllEinfuegeButtons();
+        removeAllOperatorButton();
         cp.add(pEinfuegeButton);
         for(int i=0; i<pArray.length; i++){
             addLabel(i, pArray[i]);
@@ -264,34 +267,49 @@ public class GUIVorlage extends JFrame {
         setResizable(false);
         setVisible(true);
     }
-    
-    public void loeschenMenueButtonPerformed(JButton pButton){
+
+    public void loeschenMenueButtonPerformed(String[] pArray, JButton pButton, JButton pLoescheButton){
         removeAllLabelsAndTextfields();
         setBackgroundcolorUnterMenuesGray();
         pButton.setBackground(Color.GREEN);
-        removeAllEinfuegeButtons();
+        removeAllOperatorButton();
+        cp.add(pLoescheButton);
+        for(int i=0; i<pArray.length; i++){
+            addLabel(i, pArray[i]);
+        }
+        addTextfields(pArray.length);
         setResizable(false);
         setVisible(true);
     }
-    
-    public void suchenMenueButtonPerformed(JButton pButton){
+
+    public void suchenMenueButtonPerformed(String[] pArray, JButton pButton, JButton pSucheButton){
         removeAllLabelsAndTextfields();
         setBackgroundcolorUnterMenuesGray();
         pButton.setBackground(Color.GREEN);
-        removeAllEinfuegeButtons();
+        removeAllOperatorButton();
+        cp.add(pSucheButton);
+        for(int i=0; i<pArray.length; i++){
+            addLabel(i, pArray[i]);
+        }
+        addTextfields(pArray.length);
         setResizable(false);
         setVisible(true);
     }
-    
-    public void bearbeitenMenueButtonPerformed(JButton pButton){
+
+    public void bearbeitenMenueButtonPerformed(String[] pArray, JButton pButton, JButton pBearbeiteButton){
         removeAllLabelsAndTextfields();
         setBackgroundcolorUnterMenuesGray();
         pButton.setBackground(Color.GREEN);
-        removeAllEinfuegeButtons();
+        removeAllOperatorButton();
+        cp.add(pBearbeiteButton);
+        for(int i=0; i<pArray.length; i++){
+            addLabel(i, pArray[i]);
+        }
+        addTextfields(pArray.length);
         setResizable(false);
         setVisible(true);
     }
-    
+
     public void menuePerformed(JButton pButton, JButton pEinfuegeButton, JButton pSucheButton, JButton pBearbeitenButton, JButton pLoeschenButton){
         removeAllUnterMenues();
         removeAllLabelsAndTextfields();
@@ -313,41 +331,61 @@ public class GUIVorlage extends JFrame {
             cp.remove(textfields[i]);
         }
     }
-
+    
+    public void removeAllOperatorButton(){
+        removeAllEinfuegeButtons();
+        removeAllLoescheButtons();
+        removeAllSuchenButtons();
+        removeAllBearbeitenButtons();
+    }
+    
     public void removeAllEinfuegeButtons(){
-        cp.remove(einfuegenButtonP);
-        cp.remove(einfuegenButtonM);
-        cp.remove(einfuegenButtonSH);
-        cp.remove(einfuegenButtonS);
+        for(int i=0; i<einfuegen.length; i++){
+            cp.remove(einfuegen[i]);
+        }
         cp.remove(queryAbschickenButton);
     }
-
+    
+    public void removeAllLoescheButtons(){
+        for(int i=0; i<loeschen.length; i++){
+            cp.remove(loeschen[i]);
+        }
+    }
+    
+    public void removeAllSuchenButtons(){
+        for(int i=0; i<suchen.length; i++){
+            cp.remove(suchen[i]);
+        }
+    }
+    
+    public void removeAllBearbeitenButtons(){
+        for(int i=0; i<bearbeiten.length; i++){
+            cp.remove(bearbeiten[i]);
+        }
+    }
+  
     public void removeAllEinfuegeMenues(){
-        cp.remove(mitgliederEinfuegeMenueButton);
-        cp.remove(sektenEinfuegeMenueButton);
-        cp.remove(predigerEinfuegeMenueButton);
-        cp.remove(sektenhausEinfuegeMenueButton);
+         for(int i=0; i<einfuegeMenue.length; i++){
+            cp.remove(einfuegeMenue[i]);
+        }
     }
 
     public void removeAllSucheMenues(){
-        cp.remove(mitgliederSucheMenueButton);
-        cp.remove(sektenSucheMenueButton);
-        cp.remove(predigerSucheMenueButton);
-        cp.remove(sektenhausSucheMenueButton);
+         for(int i=0; i<sucheMenue.length; i++){
+            cp.remove(sucheMenue[i]);
+        }
     }
 
     public void removeAllBearbeitenMenues(){
-        cp.remove(mitgliederBearbeitenMenueButton);
-        cp.remove(sektenBearbeitenMenueButton);
-        cp.remove(predigerBearbeitenMenueButton);
-        cp.remove(sektenhausBearbeitenMenueButton);
+         for(int i=0; i<bearbeiteMenue.length; i++){
+            cp.remove(bearbeiteMenue[i]);
+        }
     }
-    
+
     public void removeAllLoeschenMenues(){
-        cp.remove(mitgliederLoeschenMenueButton);
-        cp.remove(sektenLoeschenMenueButton);
-        cp.remove(predigerLoeschenMenueButton);
-        cp.remove(sektenhausLoeschenMenueButton);
+         for(int i=0; i<loescheMenue.length; i++){
+            cp.remove(loescheMenue[i]);
+        }
     }
 
     public void removeAllUnterMenues(){
@@ -358,12 +396,9 @@ public class GUIVorlage extends JFrame {
     }
 
     public void setBackgroundcolorMenueButtonsGray(){
-        mitgliederMenueButton.setBackground(Color.GRAY);
-        sektenMenueButton.setBackground(Color.GRAY);
-        sektenhausMenueButton.setBackground(Color.GRAY);
-        predigerMenueButton.setBackground(Color.GRAY);
-        sqlBefehlMenueButton.setBackground(Color.GRAY);
-        sekteBuchenMenueButton.setBackground(Color.GRAY);
+        for(int i=0; i<menue.length; i++){
+            menue[i].setBackground(Color.GRAY);
+        }
     }
 
     public void setBackgroundcolorUnterMenuesGray(){
@@ -374,31 +409,27 @@ public class GUIVorlage extends JFrame {
     }
 
     public void setBackgroundcolorEinfuegeButtonsGray(){
-        mitgliederEinfuegeMenueButton.setBackground(Color.GRAY);
-        sektenEinfuegeMenueButton.setBackground(Color.GRAY);
-        sektenhausEinfuegeMenueButton.setBackground(Color.GRAY);
-        predigerEinfuegeMenueButton.setBackground(Color.GRAY);
+        for(int i=0; i<einfuegeMenue.length; i++){
+            einfuegeMenue[i].setBackground(Color.GRAY);
+        }
     }
 
     public void setBackroundcolorSucheButtonsGray(){
-        mitgliederSucheMenueButton.setBackground(Color.GRAY);
-        sektenSucheMenueButton.setBackground(Color.GRAY);
-        sektenhausSucheMenueButton.setBackground(Color.GRAY);
-        predigerSucheMenueButton.setBackground(Color.GRAY);
+        for(int i=0; i<sucheMenue.length; i++){
+            sucheMenue[i].setBackground(Color.GRAY);
+        }
     }
 
     public void setBackroundcolorBearbeitenButtonsGray(){
-        mitgliederBearbeitenMenueButton.setBackground(Color.GRAY);
-        sektenBearbeitenMenueButton.setBackground(Color.GRAY);
-        sektenhausBearbeitenMenueButton.setBackground(Color.GRAY);
-        predigerBearbeitenMenueButton.setBackground(Color.GRAY);
+        for(int i=0; i<bearbeiteMenue.length; i++){
+            bearbeiteMenue[i].setBackground(Color.GRAY);
+        }
     }
 
     public void setBackroundcolorLoeschenButtonsGray(){
-        mitgliederLoeschenMenueButton.setBackground(Color.GRAY);
-        sektenLoeschenMenueButton.setBackground(Color.GRAY);
-        sektenhausLoeschenMenueButton.setBackground(Color.GRAY);
-        predigerLoeschenMenueButton.setBackground(Color.GRAY);
+        for(int i=0; i<loescheMenue.length; i++){
+            loescheMenue[i].setBackground(Color.GRAY);
+        }
     }
 
     public void addTextfields(int pAnzahl){
@@ -432,167 +463,164 @@ public class GUIVorlage extends JFrame {
 
     public void setEinstellungenMenueButtons(){
         // Menü-Buttons 
-        setButton("Mitglieder", mitgliederMenueButton, 0, 0, 100, 30, true);
-        mitgliederMenueButton.addActionListener(new ActionListener() {
+        String[] array = {"Mitglieder", "Sekten", "Prediger", "Sektenhäuser", "SekteBuchen", "SQL-Befehl"};
+        for(int i=0; i<menue.length; i++){
+            int size = (100*i);
+            setButton(array[i], menue[i], (0+size), 0, 100, 30, true);
+        }
+        menue[0].addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
                     mitgliederMenue_ActionPerformed(evt);
                 }
             });
-        setButton("Sekten", sektenMenueButton, 100, 0, 100, 30, true);
-        sektenMenueButton.addActionListener(new ActionListener() {
+        menue[1].addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
                     sektenMenue_ActionPerformed(evt);
                 }
             });
-        setButton("Prediger", predigerMenueButton, 200, 0, 100, 30, true);
-        predigerMenueButton.addActionListener(new ActionListener() {
+        menue[3].addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
                     predigerMenue_ActionPerformed(evt);
                 }
             });
-        setButton("Sektenhäuser", sektenhausMenueButton, 300, 0, 100, 30, true);
-        sektenhausMenueButton.addActionListener(new ActionListener() {
+        menue[2].addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
                     sektenhausMenue_ActionPerformed(evt);
                 }
             });
-        setButton("SekteBuchen", sekteBuchenMenueButton, 400, 0, 100, 30, true);
-        sekteBuchenMenueButton.addActionListener(new ActionListener() {
+        menue[4].addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
                     sekteBuchenMenue_ActionPerformed(evt);
                 }
             });
-        setButton("SQL-Befehl", sqlBefehlMenueButton, 500, 0, 100, 30, true);
-        sqlBefehlMenueButton.addActionListener(new ActionListener() {
+        menue[5].addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
                     sqlBefehlMenue_ActionPerformed(evt);
                 }
             });
     }
 
-    public void setEinstellungenEinfuegenButtons(){
+    public void setEinstellungenEinfuegen(){
         // Einfüge-Menü-Buttons
-        setButton("Mitglied einfügen", mitgliederEinfuegeMenueButton, 0, 30, 150, 30, false);
-        mitgliederEinfuegeMenueButton.addActionListener(new ActionListener() {
+        String[] array = {"Mitglied einfügen", "Sekte einfügen", "Prediger einfügen", "Sektenhaus einfügen"};
+        for(int i=0; i<einfuegeMenue.length; i++){
+            setButton(array[i], einfuegeMenue[i], 0, 30, 150, 30, false);
+        }
+        einfuegeMenue[0].addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
-                    mitgliederEinfuegeMenueButton_ActionPerformed(evt);
+                    mitgliederEinfuegeMenue_ActionPerformed(evt);
                 }
             });
-        setButton("Sekte einfügen", sektenEinfuegeMenueButton, 0, 30, 150, 30, false);
-        sektenEinfuegeMenueButton.addActionListener(new ActionListener() {
+        einfuegeMenue[1].addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
-                    sektenEinfuegeMenueButton_ActionPerformed(evt);
+                    sektenEinfuegeMenue_ActionPerformed(evt);
                 }
             });
-        setButton("Prediger einfügen", predigerEinfuegeMenueButton, 0, 30, 150, 30, false);
-        predigerEinfuegeMenueButton.addActionListener(new ActionListener() {
+        einfuegeMenue[3].addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
-                    predigerEinfuegeMenueButton_ActionPerformed(evt);
+                    predigerEinfuegeMenue_ActionPerformed(evt);
                 }
             });
-        setButton("Sektenhaus einfügen", sektenhausEinfuegeMenueButton, 0, 30, 150, 30, false);
-        sektenhausEinfuegeMenueButton.addActionListener(new ActionListener() {
+        einfuegeMenue[2].addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
-                    sektenhausEinfuegeMenueButton_ActionPerformed(evt);
+                    sektenhausEinfuegeMenue_ActionPerformed(evt);
                 }
             });
-
     }
 
     public void setEinstellungenSuchenButtons(){
         // Suche-Menü-Buttons
-        setButton("Mitglied suchen", mitgliederSucheMenueButton, 150, 30, 150, 30, false);
-        mitgliederSucheMenueButton.addActionListener(new ActionListener() {
+        String[] array = {"Mitglied suchen", "Sekte suchen", "Prediger suchen", "Sektenhaus suchen"};
+        for(int i=0; i<sucheMenue.length; i++){
+            setButton(array[i], sucheMenue[i], 150, 30, 150, 30, false);
+        }
+        sucheMenue[0].addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
                     mitgliederSuchenMenueButton_ActionPerformed(evt);
                 }
             });
-        setButton("Sekte suchen", sektenSucheMenueButton, 150, 30, 150, 30, false);
-        sektenSucheMenueButton.addActionListener(new ActionListener() {
+        sucheMenue[1].addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
                     sektenSuchenMenueButton_ActionPerformed(evt);
                 }
             });
-        setButton("Prediger suchen", predigerSucheMenueButton, 150, 30, 150, 30, false);
-        predigerSucheMenueButton.addActionListener(new ActionListener() {
+        sucheMenue[3].addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
                     predigerSuchenMenueButton_ActionPerformed(evt);
                 }
             });
-        setButton("Sektenhaus suchen", sektenhausSucheMenueButton, 150, 30, 150, 30, false);
-        sektenhausSucheMenueButton.addActionListener(new ActionListener() {
+        sucheMenue[2].addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
                     sektenhausSuchenMenueButton_ActionPerformed(evt);
                 }
             });
-
     }
 
     public void setEinstellungenBearbeitenButtons(){
         // Bearbeiten-Menü-Buttons
-        setButton("Mitglied Bearbeiten", mitgliederBearbeitenMenueButton, 300, 30, 150, 30, false);
-        mitgliederBearbeitenMenueButton.addActionListener(new ActionListener() {
+        String[] array = {"Mitglied bearbeiten", "Sekte bearbeiten", "Prediger bearbeiten", "Sektenhaus bearbeiten"};
+        for(int i=0; i<bearbeiteMenue.length; i++){
+            setButton(array[i], bearbeiteMenue[i], 300, 30, 150, 30, false);
+        }
+        bearbeiteMenue[0].addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
-                    mitgliederBearbeitenMenueButton_ActionPerformed(evt);
+                    mitgliederBearbeitenMenue_ActionPerformed(evt);
                 }
             });
-        setButton("Sekte Bearbeiten", sektenBearbeitenMenueButton, 300, 30, 150, 30, false);
-        sektenBearbeitenMenueButton.addActionListener(new ActionListener() {
+        bearbeiteMenue[1].addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
-                    sektenBearbeitenMenueButton_ActionPerformed(evt);
+                    sektenBearbeitenMenue_ActionPerformed(evt);
                 }
             });
-        setButton("Sektenhaus Bearbeiten", sektenhausBearbeitenMenueButton, 300, 30, 150, 30, false);
-        sektenhausBearbeitenMenueButton.addActionListener(new ActionListener() {
+        bearbeiteMenue[2].addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
-                    sektenhausBearbeitenMenueButton_ActionPerformed(evt);
+                    sektenhausBearbeitenMenue_ActionPerformed(evt);
                 }
             }); 
-        setButton("Prediger Bearbeiten", predigerBearbeitenMenueButton, 300, 30, 150, 30, false);
-        predigerBearbeitenMenueButton.addActionListener(new ActionListener() {
+        bearbeiteMenue[3].addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
-                    predigerBearbeitenMenueButton_ActionPerformed(evt);
+                    predigerBearbeitenMenue_ActionPerformed(evt);
                 }
             });
     }
 
     public void setEinstellungenLoeschenButtons(){
         // Löschen-Menü-Buttons
-        setButton("Mitglied Löschen", mitgliederLoeschenMenueButton, 450, 30, 150, 30, false);
-        mitgliederLoeschenMenueButton.addActionListener(new ActionListener() {
+        String[] array = {"Mitglied löschen", "Sekte löschen", "Prediger löschen", "Sektenhaus löschen"};
+        for(int i=0; i<loescheMenue.length; i++){
+            setButton(array[i], loescheMenue[i], 450, 30, 150, 30, false);
+        }
+        loescheMenue[0].addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
-                    mitgliederLoeschenMenueButton_ActionPerformed(evt);
+                    mitgliederLoeschenMenue_ActionPerformed(evt);
                 }
             });
-        setButton("Sekte Löschen", sektenLoeschenMenueButton, 450, 30, 150, 30, false);
-        sektenLoeschenMenueButton.addActionListener(new ActionListener() {
+        loescheMenue[1].addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
-                    sektenLoeschenMenueButton_ActionPerformed(evt);
+                    sektenLoeschenMenue_ActionPerformed(evt);
                 }
             });
-        setButton("Sektenhaus Löschen", sektenhausLoeschenMenueButton, 450, 30, 150, 30, false);
-        sektenhausLoeschenMenueButton.addActionListener(new ActionListener() {
+        loescheMenue[2].addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
-                    sektenhausLoeschenMenueButton_ActionPerformed(evt);
+                    sektenhausLoeschenMenue_ActionPerformed(evt);
                 }
             }); 
-        setButton("Prediger Löschen", predigerLoeschenMenueButton, 450, 30, 150, 30, false);
-        predigerLoeschenMenueButton.addActionListener(new ActionListener() {
+        loescheMenue[3].addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
-                    predigerLoeschenMenueButton_ActionPerformed(evt);
+                    predigerLoeschenMenue_ActionPerformed(evt);
                 }
             });
     }
 
     public void setEinstellungenOperatorButtons(){
         // Operator-Buttons
-        setButton("Maske leeren", maskeLeerenButton, 450, 400, 100, 30, true);
+        setButton("Maske leeren", maskeLeerenButton, 470, 420, 100, 30, true);
         maskeLeerenButton.addActionListener(new ActionListener() { 
                 public void actionPerformed(ActionEvent evt) { 
                     maskeLeerenButton_ActionPerformed(evt);
                 }
             });
-        setButton("Query Abschicken", queryAbschickenButton, 450, 340, 100, 30, false);
+        setButton("Query Abschicken", queryAbschickenButton, 360, 420, 100, 30, false);
         queryAbschickenButton.addActionListener(new ActionListener() { 
                 public void actionPerformed(ActionEvent evt) { 
                     queryAbschickenButton_ActionPerformed(evt);
@@ -601,32 +629,109 @@ public class GUIVorlage extends JFrame {
     }
 
     public void setEinstellungenEinfuegeOperatorButtons(){
-        // Einfüge-Button Mitglied
-        setButton("Einfügen", einfuegenButtonM, 450, 340, 100, 30, false);
-        einfuegenButtonM.addActionListener(new ActionListener() { 
+        // Einfüge-Button 
+        for(int i=0; i<einfuegen.length; i++){
+            setButton("Einfügen", einfuegen[i], 360, 420, 100, 30, false);
+        }
+        einfuegen[0].addActionListener(new ActionListener() { 
                 public void actionPerformed(ActionEvent evt) { 
                     einfuegeButtonM_ActionPerformed(evt);
                 }
             });
-        // Einfüge-Button Sekte
-        setButton("Einfügen", einfuegenButtonS, 450, 340, 100, 30, false);
-        einfuegenButtonS.addActionListener(new ActionListener() { 
+        einfuegen[1].addActionListener(new ActionListener() { 
                 public void actionPerformed(ActionEvent evt) { 
                     einfuegeButtonS_ActionPerformed(evt);
                 }
             });
-        // Einfüge-Button Sektenhaus
-        setButton("Einfügen", einfuegenButtonSH, 450, 340, 100, 30, false);
-        einfuegenButtonSH.addActionListener(new ActionListener() { 
+        einfuegen[2].addActionListener(new ActionListener() { 
                 public void actionPerformed(ActionEvent evt) { 
                     einfuegeButtonSH_ActionPerformed(evt);
                 }
-            });
-        // Einfüge-Button Prediger
-        setButton("Einfügen", einfuegenButtonP, 450, 340, 100, 30, false);
-        einfuegenButtonP.addActionListener(new ActionListener() { 
+            });;
+        einfuegen[3].addActionListener(new ActionListener() { 
                 public void actionPerformed(ActionEvent evt) { 
                     einfuegeButtonP_ActionPerformed(evt);
+                }
+            });
+    }
+    
+    public void setEinstellungenSuchenOperatorButtons(){
+        // Suchen-Button 
+        for(int i=0; i<suchen.length; i++){
+            setButton("Suchen", suchen[i], 360, 420, 100, 30, false);
+        }
+        suchen[0].addActionListener(new ActionListener() { 
+                public void actionPerformed(ActionEvent evt) { 
+                    mitgliederSuchenMenueButton_ActionPerformed(evt);
+                }
+            });
+        suchen[1].addActionListener(new ActionListener() { 
+                public void actionPerformed(ActionEvent evt) { 
+                    sektenSuchenMenueButton_ActionPerformed(evt);
+                }
+            });
+        suchen[2].addActionListener(new ActionListener() { 
+                public void actionPerformed(ActionEvent evt) { 
+                    sektenhausSuchenMenueButton_ActionPerformed(evt);
+                }
+            });;
+        suchen[3].addActionListener(new ActionListener() { 
+                public void actionPerformed(ActionEvent evt) { 
+                    predigerSuchenMenueButton_ActionPerformed(evt);
+                }
+            });
+    }
+    
+    public void setEinstellungenBearbeitenOperatorButtons(){
+        // Bearbiten-Button 
+        for(int i=0; i<bearbeiten.length; i++){
+            setButton("Bearbeiten", bearbeiten[i], 360, 420, 100, 30, false);
+        }
+        bearbeiten[0].addActionListener(new ActionListener() { 
+                public void actionPerformed(ActionEvent evt) { 
+                    mitgliederBearbeitenMenue_ActionPerformed(evt);
+                }
+            });
+        bearbeiten[1].addActionListener(new ActionListener() { 
+                public void actionPerformed(ActionEvent evt) { 
+                    sektenBearbeitenMenue_ActionPerformed(evt);
+                }
+            });
+        bearbeiten[2].addActionListener(new ActionListener() { 
+                public void actionPerformed(ActionEvent evt) { 
+                    sektenhausBearbeitenMenue_ActionPerformed(evt);
+                }
+            });;
+        bearbeiten[3].addActionListener(new ActionListener() { 
+                public void actionPerformed(ActionEvent evt) { 
+                    predigerBearbeitenMenue_ActionPerformed(evt);
+                }
+            });
+    }
+    
+    public void setEinstellungenLoeschenOperatorButtons(){
+        // Löschen-Button 
+        for(int i=0; i<loeschen.length; i++){
+            setButton("Löschen", loeschen[i], 360, 420, 100, 30, false);
+        }
+        loeschen[0].addActionListener(new ActionListener() { 
+                public void actionPerformed(ActionEvent evt) { 
+                    mitgliederLoeschenMenue_ActionPerformed(evt);
+                }
+            });
+        loeschen[1].addActionListener(new ActionListener() { 
+                public void actionPerformed(ActionEvent evt) { 
+                    sektenLoeschenMenue_ActionPerformed(evt);
+                }
+            });
+        loeschen[2].addActionListener(new ActionListener() { 
+                public void actionPerformed(ActionEvent evt) { 
+                    sektenhausLoeschenMenue_ActionPerformed(evt);
+                }
+            });;
+        loeschen[3].addActionListener(new ActionListener() { 
+                public void actionPerformed(ActionEvent evt) { 
+                    predigerLoeschenMenue_ActionPerformed(evt);
                 }
             });
     }
